@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceRoot}/src",
+		"${workspaceRoot}/src/data",
+                "${workspaceRoot}/inc",
+                "/usr/local/include",
+                "/usr/include",
+                "/home/dave/Development/Amstrad/cpctelera/cpctelera/src"
+            ],
+            "defines": [],
+            "browse": {
+                "path": [
+                    "/home/dave/Development/Amstrad/cpctelera/cpctelera/src",
+                    "/usr/local/include",
+                    "/usr/include"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "intelliSenseMode": "clang-x64",
+            "cStandard": "c17"
+        }
+    ],
+    "version": 4
+}
