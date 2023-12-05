@@ -22,5 +22,7 @@ Released with full source code (CPCTelera 1.5/SDCC required to compile) under th
 Disk image: download `nibdx.dsk` and then `RUN "NIBDX.BAS"`
 (Tape image: coming soon)
 
+The basis for this remake is the original port by Mosaik Software available [here](https://www.cpc-power.com/index.php?page=detail&num=2476)
+
 ![](/promo/demo.png)
 ![](/promo/game.png)
