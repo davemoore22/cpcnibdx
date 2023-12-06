@@ -26,4 +26,4 @@ void h_stop(void);
 void h_insert(const char* initials, const u32 score, const u8 pos);
 
 /* Private Functions */
-static bool _h_check(const u32 score);
+static bool h_check(const u32 score);

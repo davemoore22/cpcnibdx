@@ -28,7 +28,7 @@ void h_start(const u32 score) {
 	u8 y = cg_loc.y * LINE_PY;
 	char name[4] = "", key;
 	u8 len = 0;
-	u16 count = 0;
+	u16 count = 0, key_id;
 
 	/* Check if we have got a high score from the game that just ended */
 	if (score > g_hiscores[0].score) {
@@ -53,12 +53,21 @@ void h_start(const u32 score) {
 				v_print(g_strings[43], 36, y, 2);
 				v_print(name, 36, y, 1);
 
+				/* Check for Keypresses */
 				cpct_scanKeyboard_f();
-				key = cpct_getKeypressedAsASCII();
-				if (key != 0) {
 
-					name[len] = key;
-					++len;
+				/* Handle Deletes */
+				if (cpct_isKeyPressed(Key_Del) && (len > 0)) {
+					--len;
+					name[len] = '\0';
+				} else {
+					key = cpct_getKeypressedAsASCII();
+					if ((key != 0) && (key >= 65) && 
+						(key <= 122)) {
+
+						name[len] = key;
+						++len;
+					}
 				}
 			}
 
@@ -100,7 +109,7 @@ void h_insert(const char *initials, const u32 score, const u8 pos) {
 }
 
 /* Check if a score is a high score */
-static bool _h_check(const u32 score) {
+static bool h_check(const u32 score) {
 
 	u32 min = g_hiscores[0].score;
 

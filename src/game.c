@@ -27,6 +27,9 @@ score_t g_hiscores[5];
 /* Interrupt Index */
 static u8 int_idx = 0;
 
+/* Frame Counter */
+static u8 frame_c = 0;
+
 /* Current Level */
 static u8 level;
 static u8 round;
@@ -59,9 +62,9 @@ static const u8 sn_max = 62;
 /* Set default options and hiscores (precalculated for speed) */
 void g_setup(void) {
 
-	g_options[0] = false; /* Arcade Mode off*/
+	g_options[0] = false; /* Arcade Mode off */
 	g_options[1] = true;  /* Keyboard Controls */
-	g_options[2] = true;  /* Sound and Music on*/
+	g_options[2] = true;  /* Sound and Music on */
 
 	/*
 	 * Populate Hi-Score table (in ascending order as this will be the order
@@ -177,10 +180,11 @@ static bool g_play_level(const u8 level, const u8 gems) {
 
 	volatile bool finished = false, success = false;
 	volatile u16 count = 0;
-	bool moved, eaten;
+	bool moved, eaten, move_l = false, move_r = false;
 	u16 key_l, key_r;
 	u8 c_offset = g_options[1] ? 0 : 2;
 	u8 gems_left = gems;
+	dir_t dir = DIR_EAST;
 
 	static const u16 controls[4][4] = {
 		{Key_CursorLeft, Key_CursorRight, Joy0_Left, Joy0_Right},
@@ -193,8 +197,26 @@ static bool g_play_level(const u8 level, const u8 gems) {
 	/* Keep going until we've lost a life or cleared the level */
 	while (!finished) {
 
-		/* Check for a Key Press at regular intervals */
-		if ((count % 200) == 0) {
+		/* Work out Controls */
+		key_l = controls[sn.direction][c_offset];
+		key_r = controls[sn.direction][c_offset + 1];
+
+		cpct_scanKeyboard();
+		move_l = cpct_isKeyPressed(key_l);
+		move_r = cpct_isKeyPressed(key_r);
+
+		/* Check for Quit */
+		if (cpct_isKeyPressed(Key_Q))
+			finished = true;
+
+		/* Cheat Key */
+		if (cpct_isKeyPressed(Key_C)) {
+			finished = true;
+			success = true;
+		}
+
+		/* Main Loop */
+		if (frame_c % 2 == 0) {
 
 			/* Copy the old snake into the Buffer */
 			s_copy_snake(&sn, &sn_buf);
@@ -249,44 +271,24 @@ static bool g_play_level(const u8 level, const u8 gems) {
 			else if (sn.increment == 1)
 				cpct_setBorder(bord_col);
 
-			/* Work out Controls */
-			key_l = controls[sn.direction][c_offset];
-			key_r = controls[sn.direction][c_offset + 1];
+			/* And change direction */
+			if (move_l == true) {
 
-			/*
-			 * Now check for Key Presses to Steer Snake - note that
-			 * we can only turn the snake into space; turning into
-			 * a wall won't work
-			 */
-			cpct_scanKeyboard();
-			if (cpct_isKeyPressed(key_l)) {
-				if (u_check_dir(pf, pf_sz.w, &sn, -90)) {
-
-					/* Turn snake left */
-					sn.direction =
-						u_get_dir(sn.direction, -90);
+				/* Turn snake left */
+				if (u_check_dir(pf, pf_sz.w, &sn, -90)) {	
+					sn.direction = u_get_dir(sn.direction, -90);
+					move_l = false;
 				}
-			} else if (cpct_isKeyPressed(key_r)) {
-				if (u_check_dir(pf, pf_sz.w, &sn, 90)) {
+			} else if (move_r == true) {
 
-					/* Turn snake right */
-					sn.direction =
-						u_get_dir(sn.direction, 90);
+				/* Turn snake right */
+				if (u_check_dir(pf, pf_sz.w, &sn, 90)) {	
+					sn.direction = u_get_dir(sn.direction, 90);
+					move_r = false;
 				}
-			}
-
-			/* Check for Quit */
-			if (cpct_isKeyPressed(Key_Q))
-				finished = true;
-
-			/* Cheat Key */
-			if (cpct_isKeyPressed(Key_C)) {
-				finished = true;
-				success = true;
 			}
 
 			cpct_waitVSYNC();
-			u_wait(speed);
 		}
 	}
 
@@ -358,6 +360,13 @@ static void g_interrupt(void) {
 		{HW_BLACK, HW_PASTEL_BLUE, HW_BRIGHT_YELLOW, HW_BRIGHT_RED},
 		{HW_BLACK, HW_BRIGHT_WHITE, HW_ORANGE, HW_BRIGHT_RED},
 		{HW_BLACK, HW_BRIGHT_WHITE, HW_ORANGE, HW_BRIGHT_RED}};
+
+	/* Frame Counter */
+	if (int_idx == 0) {
+		++frame_c;
+		if (frame_c > 250)
+			frame_c = 0;
+	}
 
 	/* Adjust the position of one raster to allow more fine tuning */
 	if (int_idx == 4)
