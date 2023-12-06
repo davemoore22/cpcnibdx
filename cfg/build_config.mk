@@ -102,7 +102,7 @@ DSKINC  := $(OBJDIR)/$(DSK).$(DSKINC_EXT)
 ##  $(SNA):    Generates the SNA file with main binary
 ##  $(DSKINC): Includes all files from DSKFILESDIR into DSK as binaries 
 ##
-TARGET := $(CDT) $(DSK) $(DSKINC) $(SNA)
+TARGET := $(DSK) $(DSKINC)
 
 ##
 ## OBJS2CLEAN: Additional objects to be removed when running "make clean"
