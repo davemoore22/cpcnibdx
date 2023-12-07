@@ -28,7 +28,7 @@ void h_start(const u32 score) {
 	u8 y = cg_loc.y * LINE_PY;
 	char name[4] = "", key;
 	u8 len = 0;
-	u16 count = 0, key_id;
+	u16 count = 0;
 
 	/* Check if we have got a high score from the game that just ended */
 	if (score > g_hiscores[0].score) {

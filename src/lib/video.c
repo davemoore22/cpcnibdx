@@ -176,14 +176,11 @@ void v_draw_logo(void) {
 
 	/* Draw logo (due to the size, it is split into 3 seperate sprites) */
 	pos = v_get_sp(logo_loc.x, logo_loc.y * LINE_PY);
-	cpct_drawSpriteMasked(
-		image_logo_0, pos, IMAGE_LOGO_0_W, IMAGE_LOGO_0_H);
+	cpct_drawSprite(image_logo_0, pos, IMAGE_LOGO_0_W, IMAGE_LOGO_0_H);
 	pos = v_get_sp(IMAGE_LOGO_0_W, logo_loc.y * LINE_PY);
-	cpct_drawSpriteMasked(
-		image_logo_1, pos, IMAGE_LOGO_1_W, IMAGE_LOGO_1_H);
+	cpct_drawSprite(image_logo_1, pos, IMAGE_LOGO_1_W, IMAGE_LOGO_1_H);
 	pos = v_get_sp(dx_loc.x, dx_loc.y * LINE_PY);
-	cpct_drawSpriteMasked(
-		image_logo_2, pos, IMAGE_LOGO_2_W, IMAGE_LOGO_2_H);
+	cpct_drawSpriteMasked(image_logo_2, pos, IMAGE_LOGO_2_W, IMAGE_LOGO_2_H);
 }
 
 /* Draw a Playfield */
