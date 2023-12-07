@@ -180,7 +180,7 @@ static bool g_play_level(const u8 level, const u8 gems) {
 
 	volatile bool finished = false, success = false;
 	volatile u16 count = 0;
-	bool moved, eaten, move_l = false, move_r = false;
+	bool paused, moved, eaten, move_l = false, move_r = false;
 	u16 key_l, key_r;
 	u8 c_offset = g_options[1] ? 0 : 2;
 	u8 gems_left = gems;
@@ -195,25 +195,42 @@ static bool g_play_level(const u8 level, const u8 gems) {
 	cpct_waitVSYNC();
 
 	/* Keep going until we've lost a life or cleared the level */
+	paused = false;
 	while (!finished) {
 
 		/* Work out Controls */
-		key_l = controls[sn.direction][c_offset];
-		key_r = controls[sn.direction][c_offset + 1];
+		if (frame_c % 3 == 0) {
+			key_l = controls[sn.direction][c_offset];
+			key_r = controls[sn.direction][c_offset + 1];
 
-		cpct_scanKeyboard();
-		move_l = cpct_isKeyPressed(key_l);
-		move_r = cpct_isKeyPressed(key_r);
+			//cpct_scanKeyboard();
+			cpct_scanKeyboard();
+			move_l = cpct_isKeyPressed(key_l);
+			move_r = cpct_isKeyPressed(key_r);
 
-		/* Check for Quit */
-		if (cpct_isKeyPressed(Key_Q))
-			finished = true;
+			/* Quit Key */
+			if (cpct_isKeyPressed(Key_Q)) {
+				finished = true;
+				success = false;
+				lives = 0;
+			}
 
-		/* Cheat Key */
-		if (cpct_isKeyPressed(Key_C)) {
-			finished = true;
-			success = true;
+			/* Cheat Key */
+			if (cpct_isKeyPressed(Key_C)) {
+				finished = true;
+				success = true;
+			}
+
+			/* Pause Key */
+			if (cpct_isKeyPressed(Key_P)) {
+				paused = !paused;
+				if (paused)
+					u_wait(1000);
+			}
 		}
+
+		if (paused)
+			continue;
 
 		/* Main Loop */
 		if (frame_c % 2 == 0) {
@@ -233,12 +250,6 @@ static bool g_play_level(const u8 level, const u8 gems) {
 				--gems_left;
 				score += level * level * 10;
 				g_redraw_score(score);
-			}
-
-			/* Check for Collision  */
-			if (s_check_collide(&sn)) {
-				success  = false;
-				break;
 			}
 
 			/* If we have eaten all the Gems! */
@@ -289,6 +300,15 @@ static bool g_play_level(const u8 level, const u8 gems) {
 			}
 
 			cpct_waitVSYNC();
+		}
+
+		if (frame_c % 5 == 0) {
+
+			/* Check for Collision  */
+			if (s_check_collide(&sn)) {
+				success  = false;
+				break;
+			}
 		}
 	}
 
