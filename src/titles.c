@@ -16,7 +16,6 @@
  * along with this program; If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "game.h"
 #include "titles.h"
 
 /* Interrupt Index */
@@ -73,8 +72,6 @@ cpct_keyID t_start(bool skip) {
 
 			/* Check for a Key Press at regular intervals */
 			if (count % 200 == 0) {
-
-				cpct_scanKeyboard();
 				if (cpct_isKeyPressed(Key_1)) {
 
 					/* 1 to change Game Mode */
@@ -99,6 +96,10 @@ cpct_keyID t_start(bool skip) {
 						cpct_waitVSYNC();
 						t_draw_menu(false);
 					}
+				} else if (cpct_isKeyPressed(Key_4)) {
+
+					/* If 4 is pressed, we can display help */
+					return Key_4;
 				} else if (cpct_isKeyPressed(Key_0)) {
 
 					/* If 0 is pressed, we can quit game */
@@ -180,6 +181,10 @@ static void t_interrupt(void) {
 	 */
 	cpct_setPalette(title_pal[int_idx], 4);
 	int_idx = ++int_idx % 6;
+
+	/* Scan Keyboard every 1/50 of a second */
+	if (int_idx == 1)
+		cpct_scanKeyboard_if();
 }
 
 /* Draw the constant Title Screen Text */

@@ -174,7 +174,7 @@ void u_wait_kp(void) {
 
 	bool kp = false;
 	while (!kp) {
-		cpct_scanKeyboard_f();
+		cpct_scanKeyboard();
 		kp = cpct_isAnyKeyPressed();
 	}
 }

@@ -205,8 +205,6 @@ void v_draw_pf(const u8 *pf, const pos_t *loc, const dim_t *sz) {
 			cpct_drawTileAligned2x8_f(sprite_ts[cell], pos);
 		}
 	}
-
-
 }
 
 /* Draw a whole Snake */

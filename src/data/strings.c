@@ -24,7 +24,7 @@ const char *const g_strings[] = {
 	"A REMAKE BY", "DAVE MOORE (c) 2024", "    ORIGINAL BY    ",
 	"  CHRISTOPH VON RHEIN & ROMAN MAJER  ", " (C) MOSAIK SOFTWARE 1984 ",
 	"BASED ON NIBBLER BY", "JOSEPH H. ULOWETZ & JOHN M. JAUGILAS ",
-	"(C) ROCK-OLA MFG CORP 1982", "V0.3", "",
+	"(C) ROCK-OLA MFG CORP 1982", "V0.4", "",
 	/* Title Screen */
 	"1.", "2.", "3.", "4.", "9.", "0.", "CHOOSE GAME MODE", "SET CONTROLS",
 	"MUSIC/SFX ON/OFF", "SHOW INSTRUCTONS", "PLAY GAME", "QUIT",
@@ -37,4 +37,27 @@ const char *const g_strings[] = {
 	"CONGRATULATIONS!", "YOU HAVE ACHIEVED A HIGH SCORE!",
 	"ENTER YOUR INITIALS:", "***", "", "", "", "", "", "",
 	/* Game HUD */
-	"0000000000", "SCORE:", "HIGH:", "LIVES:", "ROUND:", "LEVEL:"};
+	"0000000000", "SCORE:", "HIGH:", "LIVES:", "ROUND:", "LEVEL:", "", "",
+	"", "",
+	/* Instructions */
+	"YOU ARE NIBBLER! YOU ARE HUNGRY!",
+	"MAKE YOUR WAY AROUND THE MAZE,",
+	"EATING ALL THE GEMS!",
+	"  ",
+	"  ",
+	"  ",
+	"BUT YOU WILL GROW EVERY TIME YOU",
+	"EAT A GEM! NOM-NOM-NOM! TRY NOT TO",
+	"EAT YOUR OWN TAIL, AS YOU DON'T",
+	"TASTE VERY NICE!",
+	"  ",
+	"EAT ALL THE GEMS IN A MAZE AND",
+	"YOU CAN GO TO THE NEXT ONE!",
+	"  ",
+	"THERE ARE TEN MAZES IN TOTAL!",
+	"  ",
+	"IN ARCADE MODE, DIFFERENT RULES",
+	"APPLY! THERE THE WALLS AND GEMS",
+	"MAKE YOU FEEL ESPECIALLY WEIRD!",
+	"  "
+	};

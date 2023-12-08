@@ -54,7 +54,7 @@ void h_start(const u32 score) {
 				v_print(name, 36, y, 1);
 
 				/* Check for Keypresses */
-				cpct_scanKeyboard_f();
+				cpct_scanKeyboard();
 
 				/* Handle Deletes */
 				if (cpct_isKeyPressed(Key_Del) && (len > 0)) {

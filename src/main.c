@@ -56,6 +56,16 @@ void main(void) {
 
 			/* Go back to Title Screen and repeat */
 			key = t_start(false);
+		} else if (key == Key_4) {
+
+			/* Display Instructions */
+			t_stop();
+			i_start();
+			i_stop();
+
+			/* Go back to Title Screen and repeat */
+			key = t_start(false);
+
 		}
 	};
 

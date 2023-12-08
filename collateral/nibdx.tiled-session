@@ -1,0 +1,71 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "demo.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "/home/dave/Development/Amstrad/nibblerdx/collateral/sprites.tsx": {
+            "scaleInDock": 1
+        },
+        "demo-playfield.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 160,
+                "y": 32
+            }
+        },
+        "demo.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 306,
+                "y": 46
+            }
+        },
+        "level-1.tmx": {
+            "scale": 3.099375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 138.0923573301069,
+                "y": 89.37285743093366
+            }
+        },
+        "sprites.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "/home/dave/Development/Amstrad/nibdx/collateral",
+    "last.imagePath": "/home/dave/Development/Amstrad/nibdx/collateral",
+    "map.height": 22,
+    "map.lastUsedExportFilter": "CSV files (*.csv)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 8,
+    "map.tileWidth": 8,
+    "map.width": 40,
+    "openFiles": [
+        "sprites.tsx",
+        "level-1.tmx",
+        "demo.tmx"
+    ],
+    "project": "nibdx.tiled-project",
+    "recentFiles": [
+        "sprites.tsx",
+        "level-1.tmx",
+        "demo.tmx",
+        "demo-playfield.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 8,
+        "width": 8
+    },
+    "tileset.transparentColor": "#000000",
+    "tileset.useTransparentColor": true
+}

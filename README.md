@@ -25,9 +25,16 @@ Disk image: download `nibdx.dsk` and then `RUN "NIBDX.BAS"`
 The basis for this remake is the original port by Mosaik Software available [here](https://www.cpc-power.com/index.php?page=detail&num=2476)
 
 ![](/promo/demo.png)
+![](/promo/title.png)
 ![](/promo/game.png)
+![](/promo/instruct.png)
+![](/promo/hiscore.png)
 
 **Version History**
+
+*Version 0.4 (08/12/2023)*
+
+* Added Game Instructions (4 from Main Menu)
 
 *Version 0.3 (07/12/2023)*
 

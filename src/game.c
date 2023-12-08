@@ -202,9 +202,6 @@ static bool g_play_level(const u8 level, const u8 gems) {
 		if (frame_c % 3 == 0) {
 			key_l = controls[sn.direction][c_offset];
 			key_r = controls[sn.direction][c_offset + 1];
-
-			//cpct_scanKeyboard();
-			cpct_scanKeyboard();
 			move_l = cpct_isKeyPressed(key_l);
 			move_r = cpct_isKeyPressed(key_r);
 
@@ -276,6 +273,12 @@ static bool g_play_level(const u8 level, const u8 gems) {
 						sn_buf.length - 1);
 			}
 
+			/* Check for Collision  */
+			if (s_check_collide(&sn)) {
+				success  = false;
+				break;
+			}
+
 			/* Briefly Flash the Border whilst Eating */
 			if (sn.increment > 1)
 				cpct_setBorder(HW_LIME);
@@ -300,15 +303,6 @@ static bool g_play_level(const u8 level, const u8 gems) {
 			}
 
 			cpct_waitVSYNC();
-		}
-
-		if (frame_c % 5 == 0) {
-
-			/* Check for Collision  */
-			if (s_check_collide(&sn)) {
-				success  = false;
-				break;
-			}
 		}
 	}
 
@@ -381,13 +375,6 @@ static void g_interrupt(void) {
 		{HW_BLACK, HW_BRIGHT_WHITE, HW_ORANGE, HW_BRIGHT_RED},
 		{HW_BLACK, HW_BRIGHT_WHITE, HW_ORANGE, HW_BRIGHT_RED}};
 
-	/* Frame Counter */
-	if (int_idx == 0) {
-		++frame_c;
-		if (frame_c > 250)
-			frame_c = 0;
-	}
-
 	/* Adjust the position of one raster to allow more fine tuning */
 	if (int_idx == 4)
 		u_wait(75);
@@ -400,6 +387,17 @@ static void g_interrupt(void) {
 	 */
 	cpct_setPalette(game_pal[int_idx], 4);
 	int_idx = ++int_idx % 6;
+
+	/* Frame Counter */
+	if (int_idx == 0) {
+		++frame_c;
+		if (frame_c > 250)
+			frame_c = 0;
+	}
+
+	/* Scan Keyboard every 1/50 of a second */
+	if (int_idx == 1)
+		cpct_scanKeyboard_if();
 
 	/* Call the real time clock whilst in game */
 	u_clock_interrupt();

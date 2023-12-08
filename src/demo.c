@@ -80,7 +80,6 @@ void d_start(void) {
 			moved = s_update_snake(g_demo_pf, pf_sz.w, &ds, sn_max, true);
 
 			/* Check for a keypress */
-			cpct_scanKeyboard();
 			kp = cpct_isAnyKeyPressed();
 
 			/* If the snake has moved, redraw it appropriately */
@@ -163,4 +162,8 @@ static void d_interrupt(void) {
 	 */
 	cpct_setPalette(demo_pal[int_idx], 4);
 	int_idx = ++int_idx % 6;
+
+	/* Scan Keyboard every 1/50 of a second */
+	if (int_idx == 1)
+		cpct_scanKeyboard_if();
 }
