@@ -42,7 +42,15 @@ const u8 g_demo_pf[40 * 8] = {6, 11, 11, 11, 11, 11, 11, 11, 11, 19, 11, 11, 11,
 
 
 /* Gem Numbers per Level */
-const u8 g_game_pf_gems[10] = {20, 20, 18, 19, 14, 21, 16, 21, 24, 23};
+const u8 g_game_pf_gems[10] = {20, 21, 18, 19, 14, 21, 16, 21, 24, 23};
+
+/* Level Playfield Colours */
+const u8 g_game_pf_cols[10] = {
+	HW_PASTEL_BLUE, HW_LIME, HW_MAGENTA, HW_PASTEL_BLUE, HW_PASTEL_BLUE,
+	HW_PASTEL_BLUE, HW_PASTEL_BLUE, HW_PASTEL_BLUE, HW_PASTEL_BLUE,
+	HW_PASTEL_BLUE, HW_PASTEL_BLUE
+	};
+
 
 /* Level Playfields (Tilemaps exported from TILED as CSV file) */
 const u8 g_game_pf_1[40 * 21] = {6, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,

@@ -229,7 +229,7 @@ static void u_quicksort(score_t *arr, u8 len) {
 }
 
 /* QSort Swap for Hi-Scores (C99 only) */
-static void _u_sort_swap(score_t *h1, score_t *h2) {
+static void u_sort_swap(score_t *h1, score_t *h2) {
 
 	void *temp = h1;
 	h1 = h2;
@@ -237,7 +237,7 @@ static void _u_sort_swap(score_t *h1, score_t *h2) {
 }
 
 /* QSort Comparitor for Hi-Scores (>= C11 only) */
-static int _u_qsort_compare(const void *h1, const void *h2) {
+static int u_qsort_compare(const void *h1, const void *h2) {
 
 #ifdef C11
 	const score_t *p1 = (score_t *)h1;

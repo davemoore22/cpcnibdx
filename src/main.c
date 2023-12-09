@@ -32,13 +32,13 @@ void main(void) {
 	v_init();
 
 /*  Start Demo Screen */
-#ifndef SKIP_DEMO
+#ifndef DEBUG_SKIP_DEMO
 	d_start();
 	d_stop();
 #endif
 
 /* Start Title Screen */
-#ifdef SKIP_TITLE
+#ifdef DEBUG_SKIP_TITLE
 	key = t_start(true);
 #else
 	key = t_start(false);

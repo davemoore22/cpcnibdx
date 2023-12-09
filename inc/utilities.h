@@ -41,6 +41,6 @@ void u_clock_interrupt(void);
 void u_clear_pf_cell(u8 *pf, const u8 w, const u8 x, const u8 y);
 
 /* Private Functions */
-static int _u_qsort_compare(const void *hs1, const void *hs2);
-static void _u_sort_swap(score_t *h1, score_t *h2);
+static int u_qsort_compare(const void *hs1, const void *hs2);
+static void u_sort_swap(score_t *h1, score_t *h2);
 static void u_quicksort(score_t *arr, u8 len);

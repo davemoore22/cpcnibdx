@@ -38,7 +38,7 @@ void b_scr_start(const screen_t type, const u8 round, const u8 level) {
 	/* Make sure the Timer Interrupt is off */
 	g_clock_on = false;
 
-#ifndef SKIP_BETWEEN
+#ifndef DEBUG_SKIP_BETWEEN
 
 	if (type == SCR_GET_READY) {
 

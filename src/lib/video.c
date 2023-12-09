@@ -278,3 +278,31 @@ void v_draw_snake_seg(
 	}
 
 }
+
+/* Death Animation */
+void v_erase_snake_timed(const snake_t *snake, const pos_t *loc, const int n) {
+
+	u8 *head_pos, *body_pos;
+	u8 x, y;
+
+	/* Erase the Body */
+	for (int j = snake->length; j > 0; j--) {
+
+		x = (snake->body[j].x + loc->x) * CHAR_BYTES_W;
+		y = (snake->body[j].y + loc->y) * CHAR_BYTES_H;
+		body_pos = v_get_sp(x, y);
+		cpct_waitVSYNC();
+		cpct_drawSprite(
+			sprite_ts[49], body_pos, CHAR_BYTES_W, CHAR_BYTES_H);
+		u_wait(n);
+	}
+
+	DEBUG_STR("erer", true);
+
+	x = (snake->body[0].x + loc->x) * CHAR_BYTES_W;
+	y = (snake->body[0].y + loc->y) * CHAR_BYTES_H;
+	head_pos = v_get_sp(x, y);
+	cpct_waitVSYNC();
+	cpct_drawSprite(sprite_ts[49], head_pos, CHAR_BYTES_W, CHAR_BYTES_H);
+	u_wait(n);
+}

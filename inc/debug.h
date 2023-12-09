@@ -20,6 +20,13 @@
 
 #include <main.h>
 
+/* Debug Defines to allow easier testing */
+#undef DEBUG_SKIP_DEMO
+#undef DEBUG_SKIP_TITLE
+#undef DEBUG_SKIP_BETWEEN
+#undef DEBUG_NO_COLLISION_DETECTION
+#define DEBUG_LEVEL_SKIP
+
 /* Public Functions */
 void DEBUG_STR(const char* str, const bool left);
 void DEBUG_NUM(const i64 num, const bool left);

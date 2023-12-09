@@ -27,17 +27,13 @@
 #define C99 /* C-standard used for Compilation */
 #undef C11
 
-#undef SKIP_DEMO /* Hacks to allow Testing */
-#undef SKIP_TITLE
-#undef SKIP_BETWEEN
-
-#define LINE_PX 8	/* Mode 1 Character Pixel/Byte Sizes */
+#define LINE_PX 8 /* Mode 1 Character Pixel/Byte Sizes */
 #define LINE_PY 8
 #define CHAR_BYTES_W 2
 #define CHAR_BYTES_H 8
 
 #define CELL_EMPTY 21 /* Playfield Empty Cell */
-#define CELL_GEM 5    /* Playfield Gem */
+#define CELL_GEM 5 /* Playfield Gem */
 
 /* Between Screen type */
 typedef enum {

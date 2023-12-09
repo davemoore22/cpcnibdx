@@ -212,11 +212,15 @@ static bool g_play_level(const u8 level, const u8 gems) {
 				lives = 0;
 			}
 
+			
+#ifdef DEBUG_LEVEL_SKIP
+
 			/* Cheat Key */
 			if (cpct_isKeyPressed(Key_C)) {
 				finished = true;
 				success = true;
 			}
+#endif
 
 			/* Pause Key */
 			if (cpct_isKeyPressed(Key_P)) {
@@ -274,10 +278,12 @@ static bool g_play_level(const u8 level, const u8 gems) {
 			}
 
 			/* Check for Collision  */
+#ifndef DEBUG_NO_COLLISION_DETECTION
 			if (s_check_collide(&sn)) {
 				success  = false;
 				break;
 			}
+#endif
 
 			/* Briefly Flash the Border whilst Eating */
 			if (sn.increment > 1)
@@ -306,9 +312,11 @@ static bool g_play_level(const u8 level, const u8 gems) {
 		}
 	}
 
-	if (!success)
-		v_flash_brd(HW_BRIGHT_RED, 500);
-	else
+	if (!success) {
+		cpct_setBorder(HW_BRIGHT_RED);
+		v_erase_snake_timed(&sn, &pf_loc, 1000);
+		cpct_setBorder(HW_BLACK);
+	} else
 		v_flash_brd(HW_BRIGHT_GREEN, 500);
 
 	return success;
@@ -385,7 +393,16 @@ static void g_interrupt(void) {
 	 * we can change the Screen Colours a maximum of 6 times (every 33
 	 * pixels) during one screen draw!
 	 */
-	cpct_setPalette(game_pal[int_idx], 4);
+	if (int_idx < 4) {
+
+		/* Handle additional ink switching per level */
+		cpct_setPALColour(1, g_game_pf_cols[level -1]);
+		cpct_setPALColour(2, game_pal[int_idx][2]);
+		cpct_setPALColour(3, game_pal[int_idx][3]);
+
+	} else
+		cpct_setPalette(game_pal[int_idx], 4);
+
 	int_idx = ++int_idx % 6;
 
 	/* Frame Counter */
@@ -409,7 +426,7 @@ static void g_load_level(const u8 level, u8 *gems_left) {
 	cpct_memset(&pf, 0x00, sizeof(pf));
 	cpct_memcpy(&pf, g_game_pf[level - 1], sizeof(pf));
 
-	*gems_left = g_game_pf_gems[level];
+	*gems_left = g_game_pf_gems[level - 1];
 }
 
 /* Reset Game Snake to starting position and size */

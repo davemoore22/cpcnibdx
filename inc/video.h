@@ -38,3 +38,4 @@ void v_print(const char* str, const u8 x, const u8 y, const u8 pen);
 void v_print_n(const i64 num, const u8 x, const u8 y, const u8 pen);
 u8* v_get_sp(const u8 x, const u8 y);
 void v_flash_brd(u8 col, u16 n);
+void v_erase_snake_timed(const snake_t *snake, const pos_t *loc, const int n);
