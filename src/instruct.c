@@ -29,6 +29,9 @@ static snake_t is;
 static const pos_t sn_start = {.x = 30, .y = 3};
 static const u8 sn_len = 20;
 
+/* Interrupt Index */
+static u8 int_idx = 0;
+
 /* Start Instructions Screen */
 void i_start(void) {
 
@@ -47,14 +50,15 @@ void i_start(void) {
 	i_draw_snake();
 	i_draw_instructions(&in_loc);
 	i_draw_gems(&ge_loc);
-	v_reset_pal();
+
+	cpct_waitVSYNC();
+	cpct_setBorder(bord_col);
+	int_idx = 0;
+	cpct_setInterruptHandler(i_interrupt);
 
 	/* Wait for a Keypress */
-	while (!kp) {
-
-		cpct_scanKeyboard();
+	while (!kp)
 		kp = cpct_isAnyKeyPressed();
-	}
 }
 
 /* Stop Instructions Screen */	
@@ -63,6 +67,7 @@ void i_stop(void) {
 	v_wipe_scr(true);
 	v_blk_scr();
 	v_clr_scr();
+	cpct_removeInterruptHandler();
 }
 
 /* Draw Border */
@@ -126,4 +131,36 @@ static void i_draw_instructions(const pos_t* pos) {
 		v_print_c(g_strings[y + 60], (y + pos->y) * LINE_PY, pen);
 	}
 
+}
+
+/* Set up the Raster Splits to enable more than 4 colours on the Screen */
+static void i_interrupt(void) {
+
+	static const char instruct_pal[6][4] = {
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_LIME, HW_BRIGHT_RED},
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_LIME, HW_BRIGHT_RED},
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_ORANGE, HW_BRIGHT_YELLOW},
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_BRIGHT_MAGENTA, HW_BRIGHT_YELLOW},
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_BRIGHT_YELLOW, HW_PASTEL_BLUE},
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_ORANGE, HW_BRIGHT_RED}};
+
+	/* Adjust the position of one raster to allow more fine tuning */
+	if (int_idx == 2)
+		u_wait(60);
+
+	if (int_idx == 3)
+		u_wait(70);
+
+	/*
+	 * This is called every 1/300 of a second, but since the screen refresh
+	 * rate is 1/50 of a second, this means that using this simple method,
+	 * we can change the Screen Colours a maximum of 6 times (every 33
+	 * pixels) during one screen draw!
+	 */
+	cpct_setPalette(instruct_pal[int_idx], 4);
+	int_idx = ++int_idx % 6;
+
+	/* Scan Keyboard every 1/50 of a second */
+	if (int_idx == 1)
+		cpct_scanKeyboard_if();
 }

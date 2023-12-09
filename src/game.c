@@ -45,7 +45,7 @@ static u16 speed;
 static const pos_t pf_loc = {.x = 0, .y = 0};
 static const dim_t pf_sz = {.w = 40, .h = 21};
 static const pos_t hud_loc = {.x = 0, .y = 22};
-static const pos_t sn_start = {.x = 23, .y = 19};
+static const pos_t sn_start = {.x = 24, .y = 19};
 
 /* Gems Left on the Playfield */
 static u8 gems;
@@ -131,7 +131,7 @@ u32 g_start(void) {
 
 			/* Level Completed so onto the next! */
 			++level;
-			if (level > 2) {
+			if (level > 3) {
 				//++round;
 				//level = 1;
 
@@ -180,7 +180,8 @@ static bool g_play_level(const u8 level, const u8 gems) {
 
 	volatile bool finished = false, success = false;
 	volatile u16 count = 0;
-	bool paused, moved, eaten, move_l = false, move_r = false;
+	bool move_l = false, move_r = false;
+	bool paused, moved, eaten;
 	u16 key_l, key_r;
 	u8 c_offset = g_options[1] ? 0 : 2;
 	u8 gems_left = gems;
@@ -196,6 +197,7 @@ static bool g_play_level(const u8 level, const u8 gems) {
 
 	/* Keep going until we've lost a life or cleared the level */
 	paused = false;
+
 	while (!finished) {
 
 		/* Work out Controls */
@@ -249,7 +251,7 @@ static bool g_play_level(const u8 level, const u8 gems) {
 				u_clear_pf_cell(pf, pf_sz.w, sn.body[0].x,
 					sn.body[0].y);
 				--gems_left;
-				score += level * level * 10;
+				score += level * level * round * 10;
 				g_redraw_score(score);
 			}
 
@@ -270,11 +272,13 @@ static bool g_play_level(const u8 level, const u8 gems) {
 
 				/* Draw the new head */
 				v_draw_snake_seg(&sn, &pf_loc, 0, true);
-
-				/* Erase the previous tail */
-				if ((sn.increment == 0) || (sn.increment == 3))
+				
+				/* Erase the Tail */
+				if ((sn.increment == 0) || 
+					(sn.increment == 3)) {
 					v_erase_snake_seg(&sn_buf, &pf_loc,
 						sn_buf.length - 1);
+				}
 			} else {
 
 				/*

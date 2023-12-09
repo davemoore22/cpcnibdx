@@ -20,6 +20,7 @@
 
 #include "main.h"
 
+
 /* Public Functions */
 void i_start(void);
 void i_stop(void);
@@ -28,3 +29,4 @@ static void i_draw_border(void);
 static void i_draw_snake(void);
 static void i_draw_instructions(const pos_t* pos);
 static void i_draw_gems(const pos_t* pos_g);
+static void i_interrupt(void);

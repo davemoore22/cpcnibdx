@@ -45,7 +45,7 @@ cpct_keyID t_start(bool skip) {
 		t_draw_text();
 		t_draw_menu(true);
 
-		/* Setup Screen Rasters if we are using them */
+		/* Setup Screen Rasters */
 		v_wait_VSYNC(2);
 
 		cpct_setBorder(HW_BLACK);

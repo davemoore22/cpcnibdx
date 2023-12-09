@@ -52,7 +52,7 @@ void d_start(void) {
 	d_display_text(1);
 	v_draw_pf(g_demo_pf, &pf_loc, &pf_sz);
 
-	/* Setup Screen Rasters if we are using them */
+	/* Setup Screen Rasters */
 	cpct_waitVSYNC();
 	cpct_setBorder(bord_col);
 	cpct_setInterruptHandler(d_interrupt);

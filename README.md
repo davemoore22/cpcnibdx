@@ -22,15 +22,26 @@ Released with full source code (CPCTelera 1.5/SDCC required to compile) under th
 Disk image: download `nibdx.dsk` and then `RUN "NIBDX.BAS"`
 (Tape image: coming soon)
 
+Cursor Keys Or Joystick to control your Nibbler.
+
 The basis for this remake is the original port by Mosaik Software available [here](https://www.cpc-power.com/index.php?page=detail&num=2476)
 
 ![](/promo/demo.png)
 ![](/promo/title.png)
 ![](/promo/game.png)
+![](/promo/level.png)
 ![](/promo/instruct.png)
 ![](/promo/hiscore.png)
 
 **Version History**
+
+*Version 0.5 (09/12/2023)*
+
+* Added two additional levels (Levels 2 and 3)
+* Nibbler now behaves correctly when it reaches a dead-end
+* Added a Nibbler Death animation
+* Corrected Nibbler starting position
+* Added raster effects to the Instructions screen
 
 *Version 0.4 (08/12/2023)*
 

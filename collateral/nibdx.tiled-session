@@ -36,6 +36,14 @@
                 "y": 89.05021173623715
             }
         },
+        "level-2.tmx": {
+            "scale": 3.1409374999999997,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 169.69455775544725,
+                "y": 83.4145856133718
+            }
+        },
         "sprites.tsx": {
             "scaleInDock": 2,
             "scaleInEditor": 1
