@@ -130,19 +130,19 @@ u32 g_start(void) {
 		if (lvl_complete) {
 
 			/* Level Completed so onto the next! */
-			//++level;
-			//if (level > 10) {
-			//	++round;
-			//	level = 1;
-			//}
+			++level;
+			if (level > 2) {
+				//++round;
+				//level = 1;
 
-			/* For now */
-			g_stop();
-			b_scr_start(SCR_CONGRATULATIONS, 0, 0);
-			b_scr_stop();
-			h_start(score);
-			h_stop();
-			game_over = true;
+				/* For now */
+				g_stop();
+				b_scr_start(SCR_CONGRATULATIONS, 0, 0);
+				b_scr_stop();
+				h_start(score);
+				h_stop();
+				game_over = true;
+			}		
 		} else {
 
 			/* Level Failed so lose a live */
@@ -407,7 +407,7 @@ static void g_interrupt(void) {
 static void g_load_level(const u8 level, u8 *gems_left) {
 
 	cpct_memset(&pf, 0x00, sizeof(pf));
-	cpct_memcpy(&pf, &g_game_pf_1, sizeof(pf)); // TODO: for multiple levels
+	cpct_memcpy(&pf, g_game_pf[level - 1], sizeof(pf));
 
 	*gems_left = g_game_pf_gems[level];
 }

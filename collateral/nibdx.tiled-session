@@ -24,8 +24,8 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 306,
-                "y": 46
+                "x": 305,
+                "y": 45
             }
         },
         "level-1.tmx": {
@@ -33,7 +33,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 138.0923573301069,
-                "y": 89.37285743093366
+                "y": 89.05021173623715
             }
         },
         "sprites.tsx": {
@@ -41,9 +41,9 @@
             "scaleInEditor": 1
         }
     },
-    "last.exportedFilePath": "/home/dave/Development/Amstrad/nibdx/collateral",
+    "last.exportedFilePath": "/home/dave/Development/Amstrad/nibblerdx/collateral",
     "last.imagePath": "/home/dave/Development/Amstrad/nibdx/collateral",
-    "map.height": 22,
+    "map.height": 21,
     "map.lastUsedExportFilter": "CSV files (*.csv)",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 8,

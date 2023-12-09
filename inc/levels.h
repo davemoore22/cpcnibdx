@@ -23,4 +23,6 @@
 /* Global Variables */
 extern const u8 g_demo_pf[40 * 8];
 extern const u8 g_game_pf_1[40 * 21];
+extern const u8 g_game_pf_2[40 * 21];
 extern const u8 g_game_pf_gems[10];
+extern u8* const g_game_pf[10];
