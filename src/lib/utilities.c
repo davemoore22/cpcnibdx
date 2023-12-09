@@ -148,7 +148,7 @@ bool u_check_dir(const u8 *pf, const u8 w, snake_t *snake, const i16 angle) {
 	return (cell == CELL_EMPTY) || (cell == CELL_GEM);
 }
 
-/*  Get the Width (in digits, i.e. characters) of a Number */
+/* Get the Width (in digits, i.e. characters) of a Number */
 u8 u_get_width(const u32 score) {
 
 	u8 width = 0;
@@ -169,7 +169,7 @@ void u_wait(const u16 n) {
 		__asm__("NOP");
 }
 
-/*  Wait for a keypress (interruprts will be disabled briefly) */
+/* Wait for a keypress (interruprts will be disabled briefly) */
 void u_wait_kp(void) {
 
 	bool kp = false;

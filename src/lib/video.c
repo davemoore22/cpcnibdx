@@ -143,7 +143,7 @@ void v_reset_pal(void) {
 	cpct_setBorder(HW_BLACK);
 }
 
-/*  Wait for a specified number of VSYNCs */
+/* Wait for a specified number of VSYNCs */
 void v_wait_VSYNC(u8 n) {
 
 	do {
@@ -155,7 +155,7 @@ void v_wait_VSYNC(u8 n) {
 	} while (n);
 }
 
-/*  Wrapper function for cpct_getScreenPtr */
+/* Wrapper function for cpct_getScreenPtr */
 u8 *v_get_sp(const u8 x, const u8 y) {
 
 	return cpct_getScreenPtr(CPCT_VMEM_START, x, y);

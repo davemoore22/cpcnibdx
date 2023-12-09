@@ -92,7 +92,7 @@ void h_start(const u32 score) {
 	v_wipe_scr(true);
 }
 
-/*  Stop the High Score Screen */
+/* Stop the High Score Screen */
 void h_stop(void) {
 
 	v_wipe_scr(true);

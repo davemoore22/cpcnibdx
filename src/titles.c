@@ -39,7 +39,7 @@ cpct_keyID t_start(bool skip) {
 	v_blk_scr();
 	v_clr_scr();
 
-	/* Display the Title Screen  */
+	/* Display the Title Screen */
 	if (!skip) {
 		v_draw_logo();
 		t_draw_text();
@@ -162,7 +162,7 @@ static void t_draw_hiscores(void) {
 	}
 }
 
-/*  Raster Interrupt for the Title Screen */
+/* Raster Interrupt for the Title Screen */
 static void t_interrupt(void) {
 
 	static const char title_pal[6][4] = {
@@ -196,7 +196,7 @@ static void t_draw_text() {
 	v_print_c(g_strings[1], y += LINE_PY, 2);
 }
 
-/*  Draw a Menu Option, optionally with Icons */
+/* Draw a Menu Option, optionally with Icons */
 static void t_draw_opt(const char *key, const char *str, const u8 y,
 	const bool opt, const u8 idx, const bool icons) {
 
@@ -209,7 +209,7 @@ static void t_draw_opt(const char *key, const char *str, const u8 y,
 		t_draw_icon(mn_icon_x, (y * LINE_PY - 4), opt, idx);
 }
 
-/*  Draw/Redraw Menu Icons (on and off) corresponding to a Game Option */
+/* Draw/Redraw Menu Icons (on and off) corresponding to a Game Option */
 static void t_draw_icon(const u8 x, const u8 y, const bool opt, const u8 idx) {
 
 	u8 *p_icon_pos_on, *p_icon_pos_off;

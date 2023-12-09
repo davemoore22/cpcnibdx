@@ -63,8 +63,8 @@ static const u8 sn_max = 62;
 void g_setup(void) {
 
 	g_options[0] = false; /* Arcade Mode off */
-	g_options[1] = true;  /* Keyboard Controls */
-	g_options[2] = true;  /* Sound and Music on */
+	g_options[1] = true; /* Keyboard Controls */
+	g_options[2] = true; /* Sound and Music on */
 
 	/*
 	 * Populate Hi-Score table (in ascending order as this will be the order
@@ -256,7 +256,7 @@ static bool g_play_level(const u8 level, const u8 gems) {
 			/* If we have eaten all the Gems! */
 			if (gems_left == 0) {
 
-				success  = true;
+				success = true;
 				break;
 			}
 
@@ -275,12 +275,22 @@ static bool g_play_level(const u8 level, const u8 gems) {
 				if ((sn.increment == 0) || (sn.increment == 3))
 					v_erase_snake_seg(&sn_buf, &pf_loc,
 						sn_buf.length - 1);
+			} else {
+
+				/*
+				 * If we can't move, we are at a dead end, and
+				 * if there are still gems left, we have failed
+				 * to complete the level!
+				 */
+				success = false;
+				break;
+
 			}
 
-			/* Check for Collision  */
+			/* Check for Collision */
 #ifndef DEBUG_NO_COLLISION_DETECTION
 			if (s_check_collide(&sn)) {
-				success  = false;
+				success = false;
 				break;
 			}
 #endif

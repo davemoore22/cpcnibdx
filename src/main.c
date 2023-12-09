@@ -31,7 +31,7 @@ void main(void) {
 	/* Initialise Display */
 	v_init();
 
-/*  Start Demo Screen */
+/* Start Demo Screen */
 #ifndef DEBUG_SKIP_DEMO
 	d_start();
 	d_stop();
