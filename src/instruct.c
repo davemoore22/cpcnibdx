@@ -169,18 +169,18 @@ static void i_draw_controls(const pos_t* pos) {
 
 	y = pos->y;
 	v_print_c(g_strings[80], y * LINE_PY, 2);
-	v_print_c(g_strings[81], (y += 2) * LINE_PY, 3);
+	v_print_c(g_strings[81], (y += 2) * LINE_PY, 2);
 	v_print_c(g_strings[82], (++y) * LINE_PY, 1);
-	v_print_c(g_strings[83], (y += 2) * LINE_PY, 3);
+	v_print_c(g_strings[83], (y += 2) * LINE_PY, 2);
 	v_print_c(g_strings[84], (++y) * LINE_PY, 1);
 	v_print_c(g_strings[85], (y += 2) * LINE_PY, 2);
 	v_print_c(g_strings[86], (++y) * LINE_PY, 1);
 
 	y = 17;
-	v_print_c(g_strings[8], (y) * LINE_PY, 1);
-	v_print_c(g_strings[87], (y += 2) * LINE_PY, 2);
-	v_print_c(g_strings[88], (++y) * LINE_PY, 2);
-	v_print_c(g_strings[89], (y += 2) * LINE_PY, 2);
+	v_print_c(g_strings[8], (y) * LINE_PY, 2);
+	v_print_c(g_strings[87], (y += 2) * LINE_PY, 3);
+	v_print_c(g_strings[88], (++y) * LINE_PY, 3);
+	v_print_c(g_strings[89], (y += 2) * LINE_PY, 3);
 }
 	
 /* Set up the Raster Splits to enable more than 4 colours on the Screen */
@@ -220,10 +220,10 @@ static void i_interrupt_second(void) {
 	static const char instruct_pal_2[6][4] = {
 		{HW_BLACK, HW_BRIGHT_WHITE, HW_LIME, HW_BRIGHT_RED},
 		{HW_BLACK, HW_BRIGHT_WHITE, HW_LIME, HW_BRIGHT_RED},
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_LIME, HW_BRIGHT_RED},
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_LIME, HW_BRIGHT_RED},
 		{HW_BLACK, HW_BRIGHT_WHITE, HW_LIME, HW_PASTEL_BLUE},
-		{HW_BLACK, HW_BRIGHT_WHITE, HW_PASTEL_BLUE, HW_BRIGHT_RED},
-		{HW_BLACK, HW_BRIGHT_WHITE, HW_ORANGE, HW_BRIGHT_RED},
-		{HW_BLACK, HW_BRIGHT_WHITE, HW_ORANGE, HW_BRIGHT_RED}};
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_LIME, HW_PASTEL_BLUE}};
 
 	/*
 	 * This is called every 1/300 of a second, but since the screen refresh
