@@ -123,8 +123,6 @@ static void d_display_text(const u8 phase) {
 	v_print_c(g_strings[0], y, 1);
 	v_print_c(g_strings[1], y += LINE_PY, 1);
 
-	v_print(g_strings[8], 1, 1, 3);
-
 	/* Alternating Text */
 	if (phase == 1) {
 		v_print_c(g_strings[2], y += LINE_PY * 2, 3);

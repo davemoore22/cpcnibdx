@@ -20,13 +20,15 @@
 
 /* Screen Layout */
 static const pos_t sn_loc = {.x = 29, .y = 2};
+static const pos_t tn_loc = {.x = 29, .y = 15};
 static const pos_t in_loc = {.x = 0, .y = 4};
 static const pos_t tl_loc = {.x = 0, .y = 0};
 static const pos_t ge_loc = {.x = 0, .y = 8};
 
-/* Instruction Snake */
-static snake_t is;
+/* Instruction Snakes */
+static snake_t is, ts;
 static const pos_t sn_start = {.x = 30, .y = 3};
+static const pos_t tn_start = {.x = 30, .y = 16};
 static const u8 sn_len = 20;
 
 /* Interrupt Index */
@@ -41,24 +43,45 @@ void i_start(void) {
 	v_blk_scr();
 	v_clr_scr();
 
-	/* Create the Demo Snake */
+	/* Create the Snakes */
 	s_create_snake(&is, &tl_loc, sn_len, DIR_EAST);
+	s_create_snake(&ts, &tl_loc, sn_len, DIR_EAST);
 
 	/* Draw the Screen */
 	cpct_waitVSYNC();
 	i_draw_border();
-	i_draw_snake();
+	i_draw_snake_first();
 	i_draw_instructions(&in_loc);
 	i_draw_gems(&ge_loc);
 
 	cpct_waitVSYNC();
 	cpct_setBorder(bord_col);
 	int_idx = 0;
-	cpct_setInterruptHandler(i_interrupt);
+	cpct_setInterruptHandler(i_interrupt_first);
 
 	/* Wait for a Keypress */
 	while (!kp)
 		kp = cpct_isAnyKeyPressed();
+
+	
+	v_wipe_scr(true);
+	v_blk_scr();
+	cpct_removeInterruptHandler();
+	v_clr_scr();
+	cpct_waitVSYNC();
+	i_draw_border();
+	i_draw_snake_second();
+	i_draw_controls(&in_loc);
+	cpct_waitVSYNC();
+	cpct_setBorder(bord_col);
+	int_idx = 0;
+	cpct_setInterruptHandler(i_interrupt_second);
+
+	/* Wait for a Keypress */
+	kp = false;
+	while (!kp)
+		kp = cpct_isAnyKeyPressed();
+
 }
 
 /* Stop Instructions Screen */	
@@ -115,10 +138,18 @@ static void i_draw_gems(const pos_t* pos_g) {
 }
 
 /* Draw Snake */
-static void i_draw_snake() {
+static void i_draw_snake_first() {
 
 	v_draw_snake(&is, &sn_loc);
 }
+
+/* Draw Snake */
+static void i_draw_snake_second() {
+
+	v_draw_snake(&is, &sn_loc);
+	v_draw_snake(&ts, &tn_loc);
+}
+
 
 /* Draw Instructions */
 static void i_draw_instructions(const pos_t* pos) {
@@ -126,28 +157,46 @@ static void i_draw_instructions(const pos_t* pos) {
 	int pen;
 
 	for (u8 y = 0; y < 20; y++) {
-
 		pen = y < 15 ? 2 : 3;
 		v_print_c(g_strings[y + 60], (y + pos->y) * LINE_PY, pen);
 	}
-
 }
 
+/* Draw Controls */
+static void i_draw_controls(const pos_t* pos) {
+
+	u8 y;
+
+	y = pos->y;
+	v_print_c(g_strings[80], y * LINE_PY, 2);
+	v_print_c(g_strings[81], (y += 2) * LINE_PY, 3);
+	v_print_c(g_strings[82], (++y) * LINE_PY, 1);
+	v_print_c(g_strings[83], (y += 2) * LINE_PY, 3);
+	v_print_c(g_strings[84], (++y) * LINE_PY, 1);
+	v_print_c(g_strings[85], (y += 2) * LINE_PY, 2);
+	v_print_c(g_strings[86], (++y) * LINE_PY, 1);
+
+	y = 17;
+	v_print_c(g_strings[8], (y) * LINE_PY, 1);
+	v_print_c(g_strings[87], (y += 2) * LINE_PY, 2);
+	v_print_c(g_strings[88], (++y) * LINE_PY, 2);
+	v_print_c(g_strings[89], (y += 2) * LINE_PY, 2);
+}
+	
 /* Set up the Raster Splits to enable more than 4 colours on the Screen */
-static void i_interrupt(void) {
+static void i_interrupt_first(void) {
 
 	static const char instruct_pal[6][4] = {
-		{HW_BLACK, HW_BRIGHT_WHITE, HW_LIME, HW_BRIGHT_RED},
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_BRIGHT_RED, HW_BRIGHT_RED},
 		{HW_BLACK, HW_BRIGHT_WHITE, HW_LIME, HW_BRIGHT_RED},
 		{HW_BLACK, HW_BRIGHT_WHITE, HW_ORANGE, HW_BRIGHT_YELLOW},
 		{HW_BLACK, HW_BRIGHT_WHITE, HW_BRIGHT_MAGENTA, HW_BRIGHT_YELLOW},
 		{HW_BLACK, HW_BRIGHT_WHITE, HW_BRIGHT_YELLOW, HW_PASTEL_BLUE},
-		{HW_BLACK, HW_BRIGHT_WHITE, HW_ORANGE, HW_BRIGHT_RED}};
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_PASTEL_BLUE, HW_ORANGE}};
 
-	/* Adjust the position of one raster to allow more fine tuning */
+	/* Adjust the position of some rasters to allow more fine tuning */
 	if (int_idx == 2)
 		u_wait(60);
-
 	if (int_idx == 3)
 		u_wait(70);
 
@@ -158,6 +207,31 @@ static void i_interrupt(void) {
 	 * pixels) during one screen draw!
 	 */
 	cpct_setPalette(instruct_pal[int_idx], 4);
+	int_idx = ++int_idx % 6;
+
+	/* Scan Keyboard every 1/50 of a second */
+	if (int_idx == 1)
+		cpct_scanKeyboard_if();
+}
+
+/* Set up the Raster Splits to enable more than 4 colours on the Screen */
+static void i_interrupt_second(void) {
+
+	static const char instruct_pal_2[6][4] = {
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_LIME, HW_BRIGHT_RED},
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_LIME, HW_BRIGHT_RED},
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_LIME, HW_PASTEL_BLUE},
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_PASTEL_BLUE, HW_BRIGHT_RED},
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_ORANGE, HW_BRIGHT_RED},
+		{HW_BLACK, HW_BRIGHT_WHITE, HW_ORANGE, HW_BRIGHT_RED}};
+
+	/*
+	 * This is called every 1/300 of a second, but since the screen refresh
+	 * rate is 1/50 of a second, this means that using this simple method,
+	 * we can change the Screen Colours a maximum of 6 times (every 33
+	 * pixels) during one screen draw!
+	 */
+	cpct_setPalette(instruct_pal_2[int_idx], 4);
 	int_idx = ++int_idx % 6;
 
 	/* Scan Keyboard every 1/50 of a second */

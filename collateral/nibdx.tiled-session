@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "demo.tmx",
+    "activeFile": "level-3.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -24,29 +24,37 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 305,
-                "y": 45
+                "x": 160,
+                "y": 32
             }
         },
         "level-1.tmx": {
             "scale": 3.099375,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 138.0923573301069,
-                "y": 89.05021173623715
+                "x": 160.03226456946965,
+                "y": 83.88788062109296
             }
         },
         "level-2.tmx": {
             "scale": 3.1409374999999997,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 169.69455775544725,
-                "y": 83.4145856133718
+                "x": 160.14326932643522,
+                "y": 84.05133817530597
+            }
+        },
+        "level-3.tmx": {
+            "scale": 3.1409374999999997,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 162.37190329320467,
+                "y": 83.7329618943389
             }
         },
         "sprites.tsx": {
             "scaleInDock": 2,
-            "scaleInEditor": 1
+            "scaleInEditor": 1.5
         }
     },
     "last.exportedFilePath": "/home/dave/Development/Amstrad/nibblerdx/collateral",
@@ -60,13 +68,17 @@
     "openFiles": [
         "sprites.tsx",
         "level-1.tmx",
-        "demo.tmx"
+        "demo.tmx",
+        "level-2.tmx",
+        "level-3.tmx"
     ],
     "project": "nibdx.tiled-project",
     "recentFiles": [
         "sprites.tsx",
         "level-1.tmx",
         "demo.tmx",
+        "level-2.tmx",
+        "level-3.tmx",
         "demo-playfield.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",

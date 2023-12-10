@@ -26,7 +26,10 @@ void i_start(void);
 void i_stop(void);
 
 static void i_draw_border(void);
-static void i_draw_snake(void);
+static void i_draw_snake_first(void);
+static void i_draw_snake_second(void);
 static void i_draw_instructions(const pos_t* pos);
 static void i_draw_gems(const pos_t* pos_g);
-static void i_interrupt(void);
+static void i_interrupt_first(void);
+static void i_interrupt_second(void); 
+static void i_draw_controls(const pos_t* pos);
