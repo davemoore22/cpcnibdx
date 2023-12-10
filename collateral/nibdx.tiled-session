@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level-3.tmx",
+    "activeFile": "level-5.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -52,6 +52,22 @@
                 "y": 83.4145856133718
             }
         },
+        "level-4.tmx": {
+            "scale": 3.1409374999999997,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 160.14326932643522,
+                "y": 84.05133817530597
+            }
+        },
+        "level-5.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 162.33333333333331,
+                "y": 10.333333333333343
+            }
+        },
         "sprites.tsx": {
             "scaleInDock": 2,
             "scaleInEditor": 1.5
@@ -70,7 +86,9 @@
         "level-1.tmx",
         "demo.tmx",
         "level-2.tmx",
-        "level-3.tmx"
+        "level-3.tmx",
+        "level-4.tmx",
+        "level-5.tmx"
     ],
     "project": "nibdx.tiled-project",
     "recentFiles": [
@@ -79,6 +97,8 @@
         "demo.tmx",
         "level-2.tmx",
         "level-3.tmx",
+        "level-4.tmx",
+        "level-5.tmx",
         "demo-playfield.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",

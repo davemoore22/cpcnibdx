@@ -131,7 +131,7 @@ u32 g_start(void) {
 
 			/* Level Completed so onto the next! */
 			++level;
-			if (level > 4) {
+			if (level > 5) {
 				//++round;
 				//level = 1;
 
