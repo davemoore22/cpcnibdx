@@ -8,7 +8,7 @@ Coded in C using the fantastic [CPCTelera library](https://lronaldo.github.io/cp
 
 ![](/promo/loading.png)
 
-**One level Demo version (v0.3) fully playable**. The full version will also have:
+**Three level Demo version (v0.5) fully playable**. The full version will also have:
 
 * 10+ Fiendish Levels
 * Sound Effects and Music
