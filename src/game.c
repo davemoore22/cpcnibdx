@@ -83,7 +83,7 @@ u32 g_start(void) {
 	bool game_over = false, lvl_complete;
 	u8 gems_left;
 
-	level = 7;
+	level = 8;
 	round = 1;
 	lives = 3;
 	score = 0;
@@ -131,7 +131,7 @@ u32 g_start(void) {
 
 			/* Level Completed so onto the next! */
 			++level;
-			if (level > 7) {
+			if (level > 8) {
 				//++round;
 				//level = 1;
 
@@ -312,14 +312,16 @@ static bool g_play_level(const u8 level, const u8 gems) {
 
 				/* Turn snake left */
 				if (u_check_dir(pf, pf_sz.w, &sn, -90)) {	
-					sn.direction = u_get_dir(sn.direction, -90);
+					sn.direction = u_get_dir(
+						sn.direction, -90);
 					move_l = false;
 				}
 			} else if (move_r == true) {
 
 				/* Turn snake right */
 				if (u_check_dir(pf, pf_sz.w, &sn, 90)) {	
-					sn.direction = u_get_dir(sn.direction, 90);
+					sn.direction = u_get_dir(
+						sn.direction, 90);
 					move_r = false;
 				}
 			}
