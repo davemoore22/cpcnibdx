@@ -38,9 +38,6 @@ static u8 lives;
 /* Current Score */
 static u32 score;
 
-/* Game Speed */
-static u16 speed;
-
 /* Game Playfield Screen Location */
 static const pos_t pf_loc = {.x = 0, .y = 0};
 static const dim_t pf_sz = {.w = 40, .h = 21};
@@ -83,11 +80,10 @@ u32 g_start(void) {
 	bool game_over = false, lvl_complete;
 	u8 gems_left;
 
-	level = 9;
+	level = 1;
 	round = 1;
 	lives = 3;
 	score = 0;
-	speed = 500;
 
 	/* Keep going until game over! */
 	while (!game_over) {
@@ -131,17 +127,9 @@ u32 g_start(void) {
 
 			/* Level Completed so onto the next! */
 			++level;
-			if (level > 9) {
-				//++round;
-				//level = 1;
-
-				/* For now */
-				g_stop();
-				b_scr_start(SCR_CONGRATULATIONS, 0, 0);
-				b_scr_stop();
-				h_start(score);
-				h_stop();
-				game_over = true;
+			if (level > 10) {
+				++round;
+				level = 1;
 			}		
 		} else {
 

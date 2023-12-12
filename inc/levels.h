@@ -31,6 +31,7 @@ extern const u8 g_game_pf_6[40 * 21];
 extern const u8 g_game_pf_7[40 * 21];
 extern const u8 g_game_pf_8[40 * 21];
 extern const u8 g_game_pf_9[40 * 21];
+extern const u8 g_game_pf_10[40 * 21];
 extern const u8 g_game_pf_gems[10];
 extern const u8 g_game_pf_cols[10];
 extern u8 *const g_game_pf[10];
