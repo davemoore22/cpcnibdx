@@ -1,6 +1,6 @@
 # NibblerDX
 
-An Amstrad CPC Remake of the classic Arcade and Home Game
+An Amstrad CPC Remake of the classic Arcade Game
 by Dave Moore (c) 2023-2024
 
 **Currently in development with full release in 2024!**
@@ -8,11 +8,10 @@ Coded in C using the fantastic [CPCTelera library](https://lronaldo.github.io/cp
 
 ![](/promo/loading.png)
 
-**Five level Demo version (v0.6) fully playable**. The full version will also have:
+**Five level Demo version (v0.7) fully playable**. The full version will also have:
 
 * 10+ Fiendish Levels
 * Sound Effects and Music
-* Optional Arcade Mode Gameplay
 * Enhanced Graphics and Animations
 
 **Tested and Working on both actual CPCs and Emulators!**
@@ -34,6 +33,10 @@ The basis for this remake is the original port by Mosaik Software available [her
 ![](/promo/hiscore.png)
 
 **Version History**
+
+*Version 0.7 (12/12/2023)*
+
+* Added a difficulty toggle
 
 *Version 0.6 (10/12/2023)*
 

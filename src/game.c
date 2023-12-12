@@ -62,7 +62,7 @@ static const u8 sn_max = 62;
 /* Set default options and hiscores (precalculated for speed) */
 void g_setup(void) {
 
-	g_options[0] = false; /* Arcade Mode off */
+	g_options[0] = false; /* Easy Mode */
 	g_options[1] = true; /* Keyboard Controls */
 	g_options[2] = true; /* Sound and Music on */
 
@@ -186,6 +186,8 @@ static bool g_play_level(const u8 level, const u8 gems) {
 	u8 c_offset = g_options[1] ? 0 : 2;
 	u8 gems_left = gems;
 	dir_t dir = DIR_EAST;
+	const u8 diff_c = g_options[0] ? 4 : 2;
+	const u8 diff_mod = g_options[0] ? 1 : 10;
 
 	static const u16 controls[4][4] = {
 		{Key_CursorLeft, Key_CursorRight, Joy0_Left, Joy0_Right},
@@ -236,7 +238,7 @@ static bool g_play_level(const u8 level, const u8 gems) {
 			continue;
 
 		/* Main Loop */
-		if (frame_c % 2 == 0) {
+		if (frame_c % diff_c == 0) {
 
 			/* Copy the old snake into the Buffer */
 			s_copy_snake(&sn, &sn_buf);
@@ -251,7 +253,7 @@ static bool g_play_level(const u8 level, const u8 gems) {
 				u_clear_pf_cell(pf, pf_sz.w, sn.body[0].x,
 					sn.body[0].y);
 				--gems_left;
-				score += level * level * round * 10;
+				score += level * level * round * 10 * diff_mod;
 				g_redraw_score(score);
 			}
 
