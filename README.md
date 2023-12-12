@@ -8,9 +8,8 @@ Coded in C using the fantastic [CPCTelera library](https://lronaldo.github.io/cp
 
 ![](/promo/loading.png)
 
-**Five level Demo version (v0.7) fully playable**. The full version will also have:
+**Demo version (v0.7) fully playable**. The full version will also have:
 
-* 10+ Fiendish Levels
 * Sound Effects and Music
 * Enhanced Graphics and Animations
 
@@ -37,6 +36,7 @@ The basis for this remake is the original port by Mosaik Software available [her
 *Version 0.7 (12/12/2023)*
 
 * Added a difficulty toggle
+* Added the remaining levels (to make 10 in total)
 
 *Version 0.6 (10/12/2023)*
 

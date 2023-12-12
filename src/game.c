@@ -174,7 +174,7 @@ static bool g_play_level(const u8 level, const u8 gems) {
 	u8 c_offset = g_options[1] ? 0 : 2;
 	u8 gems_left = gems;
 	dir_t dir = DIR_EAST;
-	const u8 diff_c = g_options[0] ? 4 : 2;
+	const u8 diff_c = g_options[0] ? 5 : 2;
 	const u8 diff_mod = g_options[0] ? 1 : 10;
 
 	static const u16 controls[4][4] = {
