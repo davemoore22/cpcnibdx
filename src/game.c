@@ -83,7 +83,7 @@ u32 g_start(void) {
 	bool game_over = false, lvl_complete;
 	u8 gems_left;
 
-	level = 6;
+	level = 7;
 	round = 1;
 	lives = 3;
 	score = 0;
@@ -131,7 +131,7 @@ u32 g_start(void) {
 
 			/* Level Completed so onto the next! */
 			++level;
-			if (level > 6) {
+			if (level > 7) {
 				//++round;
 				//level = 1;
 
