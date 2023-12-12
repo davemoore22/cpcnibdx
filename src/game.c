@@ -62,7 +62,7 @@ static const u8 sn_max = 62;
 /* Set default options and hiscores (precalculated for speed) */
 void g_setup(void) {
 
-	g_options[0] = false; /* Easy Mode */
+	g_options[0] = true; /* Easy Mode */
 	g_options[1] = true; /* Keyboard Controls */
 	g_options[2] = true; /* Sound and Music on */
 
@@ -83,7 +83,7 @@ u32 g_start(void) {
 	bool game_over = false, lvl_complete;
 	u8 gems_left;
 
-	level = 1;
+	level = 6;
 	round = 1;
 	lives = 3;
 	score = 0;
@@ -131,7 +131,7 @@ u32 g_start(void) {
 
 			/* Level Completed so onto the next! */
 			++level;
-			if (level > 5) {
+			if (level > 6) {
 				//++round;
 				//level = 1;
 
