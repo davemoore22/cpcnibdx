@@ -22,16 +22,39 @@
 
 /* Global Variables */
 extern const u8 g_demo_pf[40 * 8];
+
 extern const u8 g_game_pf_1[40 * 21];
+extern const pos_t g_game_gems_1[25];
+
 extern const u8 g_game_pf_2[40 * 21];
+extern const pos_t g_game_gems_2[25];
+
 extern const u8 g_game_pf_3[40 * 21];
+extern const pos_t g_game_gems_3[25];
+
 extern const u8 g_game_pf_4[40 * 21];
+extern const pos_t g_game_gems_4[25];
+
 extern const u8 g_game_pf_5[40 * 21];
+extern const pos_t g_game_gems_5[25];
+
 extern const u8 g_game_pf_6[40 * 21];
+extern const pos_t g_game_gems_6[25];
+
 extern const u8 g_game_pf_7[40 * 21];
+extern const pos_t g_game_gems_7[25];
+
 extern const u8 g_game_pf_8[40 * 21];
+extern const pos_t g_game_gems_8[25];
+
 extern const u8 g_game_pf_9[40 * 21];
+extern const pos_t g_game_gems_9[25];
+
 extern const u8 g_game_pf_10[40 * 21];
-extern const u8 g_game_pf_gems[10];
-extern const u8 g_game_pf_cols[10];
+extern const pos_t g_game_gems_10[25];
+
 extern u8 *const g_game_pf[10];
+extern pos_t *const g_game_gems[10];
+
+extern const u8 g_game_pf_count[10];
+extern const u8 g_game_pf_cols[10];

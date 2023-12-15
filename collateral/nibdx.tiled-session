@@ -24,16 +24,16 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 160,
-                "y": 32
+                "x": 159,
+                "y": 31
             }
         },
         "level-1.tmx": {
             "scale": 3.099375,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 160.03226456946965,
-                "y": 83.88788062109296
+                "x": 159.70961887477316,
+                "y": 82.91994353700343
             }
         },
         "level-10.tmx": {
@@ -49,7 +49,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 160.14326932643522,
-                "y": 84.05133817530597
+                "y": 83.7329618943389
             }
         },
         "level-3.tmx": {
@@ -72,8 +72,8 @@
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 160,
-                "y": 84
+                "x": 159.66666666666666,
+                "y": 83.66666666666667
             }
         },
         "level-6.tmx": {
@@ -113,7 +113,7 @@
             "scaleInEditor": 1.5
         }
     },
-    "last.exportedFilePath": "/home/dave/Development/Amstrad/nibblerdx/collateral",
+    "last.exportedFilePath": "/home/dave/Development/Amstrad/nibdx/collateral",
     "last.imagePath": "/home/dave/Development/Amstrad/nibdx/collateral",
     "map.height": 21,
     "map.lastUsedExportFilter": "CSV files (*.csv)",

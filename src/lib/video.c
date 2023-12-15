@@ -207,6 +207,23 @@ void v_draw_pf(const u8 *pf, const pos_t *loc, const dim_t *sz) {
 	}
 }
 
+/* Draw the Gems on a Playfield */
+void v_draw_gems(const gem_t *gems, const pos_t *loc, const dim_t *sz) {
+
+	int top_x = loc->x * LINE_PX, top_y = loc->y * LINE_PY;
+	u8 *pos;
+	u8 cell;
+
+	for (int i = 0; i < 25; i++) {
+		if (gems[i].loc.x == 0)
+			continue;
+		pos = v_get_sp(top_x + (gems[i].loc.x * CHAR_BYTES_W),
+			top_y + (gems[i].loc.y * CHAR_BYTES_H));
+		cell = gems[i].active ? 5 : 49;
+		cpct_drawTileAligned2x8_f(sprite_ts[cell], pos);
+	}
+}
+
 /* Draw a whole Snake */
 void v_draw_snake(const snake_t *snake, const pos_t *loc) {
 

@@ -22,6 +22,7 @@
 /* Public Functions */
 void v_draw_logo(void);
 void v_draw_pf(const u8 *pf, const pos_t *loc, const dim_t *sz);
+void v_draw_gems(const gem_t *gems, const pos_t *loc, const dim_t *sz);
 void v_draw_snake(const snake_t *snake, const pos_t *loc);
 void v_erase_snake_seg(const snake_t *snake, const pos_t *loc, const u8 seg);
 void v_draw_snake_seg(

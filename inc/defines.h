@@ -63,10 +63,19 @@ typedef struct {
 		u8 y; /* y coordinate (0 is top-left) */
 } pos_t;
 
+/* Width and Height */
 typedef struct {
 		u8 w; /* width (in character cells) */
 		u8 h; /* height(in character cells) */
 } dim_t;
+
+/* Gem */
+typedef struct {
+
+		pos_t loc; /* Gem Location */
+		bool active; /* If Gem is still on Playfield */
+
+} gem_t;
 
 /* Snake object */
 typedef struct {

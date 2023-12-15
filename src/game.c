@@ -45,7 +45,7 @@ static const pos_t hud_loc = {.x = 0, .y = 22};
 static const pos_t sn_start = {.x = 24, .y = 19};
 
 /* Gems Left on the Playfield */
-static u8 gems;
+static gem_t gems[25];
 
 /* Working Playfield for the Current Level */
 static u8 pf[40 * 21];
@@ -101,6 +101,7 @@ u32 g_start(void) {
 		/* Draw the fixed elements of the HUD */
 		g_display_HUD();
 		v_draw_pf(pf, &pf_loc, &pf_sz);
+		v_draw_gems(gems, &pf_loc, &pf_sz);
 		v_draw_snake(&sn, &pf_loc);
 
 		/*
@@ -164,7 +165,7 @@ void g_stop(void) {
 }
 
 /* Handle the Game Level Playing */
-static bool g_play_level(const u8 level, const u8 gems) {
+static bool g_play_level(const u8 level, const u8 gems_total) {
 
 	volatile bool finished = false, success = false;
 	volatile u16 count = 0;
@@ -172,7 +173,7 @@ static bool g_play_level(const u8 level, const u8 gems) {
 	bool paused, moved, eaten;
 	u16 key_l, key_r;
 	u8 c_offset = g_options[1] ? 0 : 2;
-	u8 gems_left = gems;
+	u8 gems_left = gems_total;
 	dir_t dir = DIR_EAST;
 	const u8 diff_c = g_options[0] ? 5 : 2;
 	const u8 diff_mod = g_options[0] ? 1 : 10;
@@ -191,7 +192,7 @@ static bool g_play_level(const u8 level, const u8 gems) {
 	while (!finished) {
 
 		/* Work out Controls */
-		if (frame_c % 3 == 0) {
+		if (frame_c % 1 == 0) {
 			key_l = controls[sn.direction][c_offset];
 			key_r = controls[sn.direction][c_offset + 1];
 			move_l = cpct_isKeyPressed(key_l);
@@ -203,8 +204,7 @@ static bool g_play_level(const u8 level, const u8 gems) {
 				success = false;
 				lives = 0;
 			}
-
-			
+	
 #ifdef DEBUG_LEVEL_SKIP
 
 			/* Cheat Key */
@@ -429,10 +429,21 @@ static void g_interrupt(void) {
 /* Load data for current level */
 static void g_load_level(const u8 level, u8 *gems_left) {
 
+	pos_t* gem_source;
+
+	/* Load the Playfield */
 	cpct_memset(&pf, 0x00, sizeof(pf));
 	cpct_memcpy(&pf, g_game_pf[level - 1], sizeof(pf));
 
-	*gems_left = g_game_pf_gems[level - 1];
+	/* Load the Gems */
+	*gems_left = g_game_pf_count[level - 1];
+	cpct_memset(&gems, 0x00, sizeof(gem_t));
+	gem_source = g_game_gems[level - 1];
+	for (int i = 0; i < *gems_left; i++) {
+		gems[i].loc.x = gem_source[i].x;
+		gems[i].loc.y = gem_source[i].y;
+		gems[i].active = true;
+	}
 }
 
 /* Reset Game Snake to starting position and size */
