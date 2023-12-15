@@ -439,10 +439,16 @@ static void g_load_level(const u8 level, u8 *gems_left) {
 	*gems_left = g_game_pf_count[level - 1];
 	cpct_memset(&gems, 0x00, sizeof(gem_t));
 	gem_source = g_game_gems[level - 1];
-	for (int i = 0; i < *gems_left; i++) {
-		gems[i].loc.x = gem_source[i].x;
-		gems[i].loc.y = gem_source[i].y;
-		gems[i].active = true;
+	for (int i = 0; i < 25; i++) {
+		if (i < *gems_left) {
+			gems[i].loc.x = gem_source[i].x;
+			gems[i].loc.y = gem_source[i].y;
+			gems[i].active = true;
+		} else {
+			gems[i].loc.x = 0;
+			gems[i].loc.y = 0;
+			gems[i].active = false;
+		}
 	}
 }
 
