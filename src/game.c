@@ -79,6 +79,7 @@ u32 g_start(void) {
 
 	bool game_over = false, lvl_complete;
 	u8 gems_left;
+	bool reset_gems = true;
 
 	level = 1;
 	round = 1;
@@ -95,11 +96,12 @@ u32 g_start(void) {
 		v_clr_scr();
 
 		/* Load the appropriate level data */
-		g_load_level(level, &gems_left);
+		g_load_level(level, &gems_left, reset_gems);
 		g_reset_snake(&sn, &sn_buf);
 
 		/* Draw the fixed elements of the HUD */
 		g_display_HUD();
+		g_redraw_gems(gems_left);
 		v_draw_pf(pf, &pf_loc, &pf_sz);
 		v_draw_gems(gems, &pf_loc, &pf_sz);
 		v_draw_snake(&sn, &pf_loc);
@@ -131,7 +133,8 @@ u32 g_start(void) {
 			if (level > 10) {
 				++round;
 				level = 1;
-			}		
+			}
+			reset_gems = true;	
 		} else {
 
 			/* Level Failed so lose a live */
@@ -148,6 +151,10 @@ u32 g_start(void) {
 			} else {
 				v_wipe_scr(true);
 				--lives;
+				if (!g_options[0])
+					reset_gems = true;
+				else
+					reset_gems = false;
 			}
 		}
 	}
@@ -170,13 +177,14 @@ static bool g_play_level(const u8 level, const u8 gems_total) {
 	volatile bool finished = false, success = false;
 	volatile u16 count = 0;
 	bool move_l = false, move_r = false;
-	bool paused, moved, eaten;
+	bool paused, moved;
 	u16 key_l, key_r;
 	u8 c_offset = g_options[1] ? 0 : 2;
 	u8 gems_left = gems_total;
 	dir_t dir = DIR_EAST;
 	const u8 diff_c = g_options[0] ? 5 : 2;
 	const u8 diff_mod = g_options[0] ? 1 : 10;
+	i8 gem_ate;
 
 	static const u16 controls[4][4] = {
 		{Key_CursorLeft, Key_CursorRight, Joy0_Left, Joy0_Right},
@@ -233,16 +241,20 @@ static bool g_play_level(const u8 level, const u8 gems_total) {
 
 			/* Update the snake position */
 			moved = s_update_snake(pf, pf_sz.w, &sn, sn_max, false);
-			eaten = u_has_eaten_gem(pf, pf_sz.w, &sn);
-			if (eaten) {
+			gem_ate = u_has_eaten_gem(&sn, gems);
+			if (gem_ate > -1) {
 
 				/* Lengthen the snake by 3 segments */
 				sn.increment = 3;
-				u_clear_pf_cell(pf, pf_sz.w, sn.body[0].x,
-					sn.body[0].y);
+				gems[gem_ate].active = false;
+				gems[gem_ate].loc.x = 0;
+				gems[gem_ate].loc.y = 0;
 				--gems_left;
 				score += level * level * round * 10 * diff_mod;
 				g_redraw_score(score);
+				g_redraw_gems(gems_left);
+				DEBUG_NUM(gems_left, true);
+				DEBUG_RESET(true);
 			}
 
 			/* If we have eaten all the Gems! */
@@ -349,6 +361,7 @@ static void g_display_HUD(void) {
 	y += LINE_PY * 2;
 	v_print(g_strings[53], 2, y, 2);
 	g_display_lives(16, y);
+	v_print(g_strings[57], 32, y, 2);
 
 	/* Display Round and Level */
 	v_print(g_strings[54], 44, y, 2);
@@ -363,6 +376,14 @@ static void g_redraw_score(const u32 score) {
 	u8 width, y = hud_loc.y * LINE_PY;
 	width = u_get_width(score);
 	v_print_n(score, 16 + (20 - (width * 2)), y, 1);
+}
+	
+/* Display Remaining Gems */
+static void g_redraw_gems(const u8 gems_left) {
+
+	u8 y = (hud_loc.y + 2) * LINE_PY;
+	v_print(g_strings[58], 32, y, 2);
+	v_print_n(gems_left, 32, y, 1);
 }
 
 /* Draw Remaining Lives */
@@ -427,7 +448,7 @@ static void g_interrupt(void) {
 }
 
 /* Load data for current level */
-static void g_load_level(const u8 level, u8 *gems_left) {
+static void g_load_level(const u8 level, u8 *gems_left, const bool reset) {
 
 	pos_t* gem_source;
 
@@ -435,19 +456,22 @@ static void g_load_level(const u8 level, u8 *gems_left) {
 	cpct_memset(&pf, 0x00, sizeof(pf));
 	cpct_memcpy(&pf, g_game_pf[level - 1], sizeof(pf));
 
-	/* Load the Gems */
-	*gems_left = g_game_pf_count[level - 1];
-	cpct_memset(&gems, 0x00, sizeof(gem_t));
-	gem_source = g_game_gems[level - 1];
-	for (int i = 0; i < 25; i++) {
-		if (i < *gems_left) {
-			gems[i].loc.x = gem_source[i].x;
-			gems[i].loc.y = gem_source[i].y;
-			gems[i].active = true;
-		} else {
-			gems[i].loc.x = 0;
-			gems[i].loc.y = 0;
-			gems[i].active = false;
+	/* Reload the Gems if necessary */
+	if (reset) {
+		// TODO: in easy mode, stop resetting gems left after a loss of life
+		*gems_left = g_game_pf_count[level - 1];
+		cpct_memset(&gems, 0x00, sizeof(gem_t));
+		gem_source = g_game_gems[level - 1];
+		for (int i = 0; i < 25; i++) {
+			if (i < *gems_left) {
+				gems[i].loc.x = gem_source[i].x;
+				gems[i].loc.y = gem_source[i].y;
+				gems[i].active = true;
+			} else {
+				gems[i].loc.x = 0;
+				gems[i].loc.y = 0;
+				gems[i].active = false;
+			}
 		}
 	}
 }
@@ -477,5 +501,5 @@ static bool g_test_can_move(
 
 	/* 21 is empty space and 5 is a gem */
 	cell = pf[cx + (cy * w)];
-	return (cell == CELL_EMPTY) || (cell == CELL_GEM);
+	return cell == CELL_EMPTY;
 }

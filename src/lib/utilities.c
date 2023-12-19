@@ -77,13 +77,21 @@ void u_get_cell(const dir_t dir, u8 *cx, u8 *cy, const bool ahead) {
 }
 
 /* See if we have eaten a gem! */
-bool u_has_eaten_gem(u8 *pf, const u8 w, snake_t *snake) {
+i8 u_has_eaten_gem(snake_t *snake, gem_t* gems) {
 
-	u8 cell;
+	i8 idx = -1;
 
-	cell = pf[snake->body[0].x + (snake->body[0].y * w)];
+	do {
+		if (gems[idx].active) {
+			if ((snake->body[0].x == gems[idx].loc.x) &&
+				(snake->body[0].y == gems[idx].loc.y)) {
+					return idx;
+				}
+		}
+	++idx;
+	} while (idx < 25);
 
-	return cell == CELL_GEM;
+	return -1;
 }
 
 /* Clear a Playing Field Cell */
@@ -128,7 +136,7 @@ bool u_test_cell(const u8 *pf,
 	cy += dy;
 	cell = pf[cx + (cy * w)];
 
-	return (cell == CELL_EMPTY) || (cell == CELL_GEM);
+	return cell == CELL_EMPTY;
 }
 
 /* Check the next cell at a specified offset from the head of a Snake */
@@ -145,7 +153,7 @@ bool u_check_dir(const u8 *pf, const u8 w, snake_t *snake, const i16 angle) {
 
 	cell = pf[cx + (cy * w)];
 
-	return (cell == CELL_EMPTY) || (cell == CELL_GEM);
+	return cell == CELL_EMPTY;
 }
 
 /* Get the Width (in digits, i.e. characters) of a Number */

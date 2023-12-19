@@ -33,12 +33,12 @@ dir_t u_get_dir(const dir_t dir, const i16 angle);
 bool u_test_cell(
 	const u8 *pf, const u8 w, const u8 x, const u8 y, const dir_t dir);
 bool u_check_dir(const u8 *pf, const u8 w, snake_t *snake, const i16 angle);
-bool u_has_eaten_gem(u8 *pf, const u8 w, snake_t *snake);
 u8 u_get_width(const u32 score);
 void u_wait(const u16 n);
 void u_sort_hiscores(void);
 void u_clock_interrupt(void);
 void u_clear_pf_cell(u8 *pf, const u8 w, const u8 x, const u8 y);
+i8 u_has_eaten_gem(snake_t *snake, gem_t* gems);
 
 /* Private Functions */
 static int u_qsort_compare(const void *hs1, const void *hs2);

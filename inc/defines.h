@@ -33,7 +33,6 @@
 #define CHAR_BYTES_H 8
 
 #define CELL_EMPTY 21 /* Playfield Empty Cell */
-#define CELL_GEM 5 /* Playfield Gem */
 
 /* Between Screen type */
 typedef enum {

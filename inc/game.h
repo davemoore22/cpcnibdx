@@ -34,11 +34,12 @@ void g_stop(void);
 /* Private Functions */
 static bool g_play_level(const u8 level, const u8 gems);
 static void g_interrupt(void);
-static void g_load_level(const u8 level, u8 *gems_left);
+static void g_load_level(const u8 level, u8 *gems_left, const bool reset);
 static void g_reset_snake(snake_t *snake, snake_t *snake_buf);
 static bool g_test_can_move(
 	const u8 *pf, const u8 w, const snake_t *snake, const dir_t dir);
 static void g_display_HUD(void);
 static void g_redraw_score(const u32 score);
+static void g_redraw_gems(const u8 gems_left);
 static void g_display_lives(const u8 x, const u8 y);
 

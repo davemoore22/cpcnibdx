@@ -37,8 +37,8 @@ const char *const g_strings[] = {
 	"CONGRATULATIONS!", "YOU HAVE ACHIEVED A HIGH SCORE!",
 	"ENTER YOUR INITIALS:", "***", "", "", "", "", "", "",
 	/* Game HUD 50-59 */
-	"0000000000", "SCORE:", "HIGH:", "LIVES:", "ROUND:", "LEVEL:", "", "",
-	"", "",
+	"0000000000", "SCORE:", "HIGH:", "LIVES:", "ROUND:", "LEVEL:", "GEMS", 
+	" ", "", "",
 	/* Instructions 60-79 */
 	"YOU ARE NIBBLER! YOU ARE HUNGRY!", "MAKE YOUR WAY AROUND THE MAZE,",
 	"EATING ALL THE GEMS!", "  ", "  ", "  ",
