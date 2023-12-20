@@ -56,6 +56,10 @@ static snake_t sn_buf;
 static const u8 sn_len = 10;
 static const u8 sn_max = 62;
 
+/* Whither or not we need to reset gems */
+static bool easy_mode;
+static bool reset_gems = false;
+
 /* Set default options and hiscores (precalculated for speed) */
 void g_setup(void) {
 
@@ -81,10 +85,13 @@ u32 g_start(void) {
 	u8 gems_left;
 	bool reset_gems = true;
 
+	/* Initial Settings */
 	level = 1;
 	round = 1;
 	lives = 3;
 	score = 0;
+	easy_mode = g_options[0];
+	reset_gems = true;
 
 	/* Keep going until game over! */
 	while (!game_over) {
@@ -98,12 +105,13 @@ u32 g_start(void) {
 		/* Load the appropriate level data */
 		g_load_level(level, &gems_left, reset_gems);
 		g_reset_snake(&sn, &sn_buf);
+		if (easy_mode)
+			reset_gems = false;
 
 		/* Draw the fixed elements of the HUD */
 		g_display_HUD();
-		g_redraw_gems(gems_left);
 		v_draw_pf(pf, &pf_loc, &pf_sz);
-		v_draw_gems(gems, &pf_loc, &pf_sz);
+		v_draw_gems(gems, &pf_loc);
 		v_draw_snake(&sn, &pf_loc);
 
 		/*
@@ -121,7 +129,7 @@ u32 g_start(void) {
 		g_clock_on = true;
 
 		/* Start the game */
-		lvl_complete = g_play_level(level, gems_left);
+		lvl_complete = g_play_level(level, &gems_left);
 		g_stop();
 		g_clock_on = false;
 
@@ -150,11 +158,9 @@ u32 g_start(void) {
 				game_over = true;
 			} else {
 				v_wipe_scr(true);
+				cpct_removeInterruptHandler();
 				--lives;
-				if (!g_options[0])
-					reset_gems = true;
-				else
-					reset_gems = false;
+				reset_gems = !easy_mode;
 			}
 		}
 	}
@@ -172,7 +178,7 @@ void g_stop(void) {
 }
 
 /* Handle the Game Level Playing */
-static bool g_play_level(const u8 level, const u8 gems_total) {
+static bool g_play_level(const u8 level, u8* gems_left) {
 
 	volatile bool finished = false, success = false;
 	volatile u16 count = 0;
@@ -180,7 +186,6 @@ static bool g_play_level(const u8 level, const u8 gems_total) {
 	bool paused, moved;
 	u16 key_l, key_r;
 	u8 c_offset = g_options[1] ? 0 : 2;
-	u8 gems_left = gems_total;
 	dir_t dir = DIR_EAST;
 	const u8 diff_c = g_options[0] ? 5 : 2;
 	const u8 diff_mod = g_options[0] ? 1 : 10;
@@ -249,16 +254,13 @@ static bool g_play_level(const u8 level, const u8 gems_total) {
 				gems[gem_ate].active = false;
 				gems[gem_ate].loc.x = 0;
 				gems[gem_ate].loc.y = 0;
-				--gems_left;
+				--*gems_left;
 				score += level * level * round * 10 * diff_mod;
 				g_redraw_score(score);
-				g_redraw_gems(gems_left);
-				DEBUG_NUM(gems_left, true);
-				DEBUG_RESET(true);
 			}
 
 			/* If we have eaten all the Gems! */
-			if (gems_left == 0) {
+			if (*gems_left == 0) {
 
 				success = true;
 				break;
@@ -377,14 +379,6 @@ static void g_redraw_score(const u32 score) {
 	width = u_get_width(score);
 	v_print_n(score, 16 + (20 - (width * 2)), y, 1);
 }
-	
-/* Display Remaining Gems */
-static void g_redraw_gems(const u8 gems_left) {
-
-	u8 y = (hud_loc.y + 2) * LINE_PY;
-	v_print(g_strings[58], 32, y, 2);
-	v_print_n(gems_left, 32, y, 1);
-}
 
 /* Draw Remaining Lives */
 static void g_display_lives(const u8 x, const u8 y) {
@@ -448,7 +442,7 @@ static void g_interrupt(void) {
 }
 
 /* Load data for current level */
-static void g_load_level(const u8 level, u8 *gems_left, const bool reset) {
+static void g_load_level(const u8 level, u8 *gems_left, const bool reset_gems) {
 
 	pos_t* gem_source;
 
@@ -457,8 +451,8 @@ static void g_load_level(const u8 level, u8 *gems_left, const bool reset) {
 	cpct_memcpy(&pf, g_game_pf[level - 1], sizeof(pf));
 
 	/* Reload the Gems if necessary */
-	if (reset) {
-		// TODO: in easy mode, stop resetting gems left after a loss of life
+	if (reset_gems) {
+
 		*gems_left = g_game_pf_count[level - 1];
 		cpct_memset(&gems, 0x00, sizeof(gem_t));
 		gem_source = g_game_gems[level - 1];
@@ -473,7 +467,8 @@ static void g_load_level(const u8 level, u8 *gems_left, const bool reset) {
 				gems[i].active = false;
 			}
 		}
-	}
+	} else
+		*gems_left = *gems_left;
 }
 
 /* Reset Game Snake to starting position and size */

@@ -24,7 +24,7 @@ const char *const g_strings[] = {
 	"A REMAKE BY", "DAVE MOORE (c) 2024", "    ORIGINAL BY    ",
 	"  CHRISTOPH VON RHEIN & ROMAN MAJER  ", " (C) MOSAIK SOFTWARE 1984 ",
 	"BASED ON NIBBLER BY", "JOSEPH H. ULOWETZ & JOHN M. JAUGILAS ",
-	"(C) ROCK-OLA MFG CORP 1982", "V0.7: 12/12/2023", "",
+	"(C) ROCK-OLA MFG CORP 1982", "V0.8: 20/12/2023", "",
 	/* Title Screen 10-29 */
 	"1.", "2.", "3.", "4.", "9.", "0.", "DIFFICULTY", "SET CONTROLS",
 	"MUSIC/SFX ON/OFF", "SHOW INSTRUCTONS", "PLAY GAME", "QUIT",

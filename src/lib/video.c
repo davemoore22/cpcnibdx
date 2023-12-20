@@ -208,7 +208,7 @@ void v_draw_pf(const u8 *pf, const pos_t *loc, const dim_t *sz) {
 }
 
 /* Draw the Gems on a Playfield */
-void v_draw_gems(const gem_t *gems, const pos_t *loc, const dim_t *sz) {
+void v_draw_gems(const gem_t *gems, const pos_t *loc) {
 
 	int top_x = loc->x * LINE_PX, top_y = loc->y * LINE_PY;
 	u8 *pos;
@@ -313,8 +313,6 @@ void v_erase_snake_timed(const snake_t *snake, const pos_t *loc, const int n) {
 			sprite_ts[49], body_pos, CHAR_BYTES_W, CHAR_BYTES_H);
 		u_wait(n);
 	}
-
-	DEBUG_STR("erer", true);
 
 	x = (snake->body[0].x + loc->x) * CHAR_BYTES_W;
 	y = (snake->body[0].y + loc->y) * CHAR_BYTES_H;

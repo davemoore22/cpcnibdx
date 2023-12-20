@@ -21,9 +21,9 @@
 #include <main.h>
 
 /* Debug Defines to allow easier testing */
-#define DEBUG_SKIP_DEMO
-#define DEBUG_SKIP_TITLE
-#define DEBUG_SKIP_BETWEEN
+#undef DEBUG_SKIP_DEMO
+#undef DEBUG_SKIP_TITLE
+#undef DEBUG_SKIP_BETWEEN
 #undef DEBUG_NO_COLLISION_DETECTION
 #define DEBUG_LEVEL_SKIP
 

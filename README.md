@@ -33,6 +33,12 @@ The basis for this remake is the original port by Mosaik Software available [her
 
 **Version History**
 
+*Version 0.8 (20/12/2023)*
+
+* Fixed Responsiveness of Controls in main game
+* In easy mode, Nibbler now remembers on a level which gems are eaten
+* In the High Score Table, no additional keypress is needed to finish entering a score
+
 *Version 0.7 (12/12/2023)*
 
 * Added a difficulty toggle

@@ -45,7 +45,7 @@ void h_start(const u32 score) {
 
 		/* Handle Initial Input */
 		y = ei_loc.y * LINE_PY;
-		while (len <= 3) {
+		while (len <= 2) {
 
 			if (count % 200 == 0) {
 

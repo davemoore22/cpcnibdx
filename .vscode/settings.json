@@ -53,7 +53,8 @@
 		"ranges": "c",
 		"span": "c",
 		"strings.h": "c",
-		"snake.h": "c"
+		"snake.h": "c",
+		"memory": "c"
 	},
 	"editor.rulers": [
 		80
