@@ -8,7 +8,7 @@ Coded in C using the fantastic [CPCTelera library](https://lronaldo.github.io/cp
 
 ![](/promo/loading.png)
 
-**Demo version (v0.7) fully playable**. The full version will also have:
+**Demo version (v0.8) fully playable**. The full version will also have:
 
 * Sound Effects and Music
 * Enhanced Graphics and Animations
