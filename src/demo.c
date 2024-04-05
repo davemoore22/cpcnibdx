@@ -52,6 +52,9 @@ void d_start(void) {
 	d_display_text(1);
 	v_draw_pf(g_demo_pf, &pf_loc, &pf_sz);
 
+	/* Play Music*/
+	PlayMusic(0);
+
 	/* Setup Screen Rasters */
 	cpct_waitVSYNC();
 	cpct_setBorder(bord_col);
@@ -112,6 +115,7 @@ void d_stop(void) {
 	v_blk_scr();
 	v_clr_scr();
 	cpct_removeInterruptHandler();
+	StopMusic();
 }
 
 /* Draw the text on the Demo Screen */
@@ -119,16 +123,16 @@ static void d_display_text(const u8 phase) {
 
 	u8 y = au_loc.y * LINE_PY;
 
-	/* Fixed Text */
-	v_print_c(g_strings[0], y, 1);
-	v_print_c(g_strings[1], y += LINE_PY, 1);
-
 	/* Alternating Text */
 	if (phase == 1) {
+		v_print_c(g_strings[0], y, 1);
+		v_print_c(g_strings[1], y += LINE_PY, 1);
 		v_print_c(g_strings[2], y += LINE_PY * 2, 3);
 		v_print_c(g_strings[3], y += LINE_PY, 3);
 		v_print_c(g_strings[4], y += LINE_PY, 3);
 	} else if (phase == 2) {
+		v_print_c(g_strings[29], y, 1);
+		v_print_c(g_strings[9], y += LINE_PY, 1);
 		v_print_c(g_strings[5], y += LINE_PY * 2, 3);
 		v_print_c(g_strings[6], y += LINE_PY, 3);
 		v_print_c(g_strings[7], y += LINE_PY, 3);
@@ -152,6 +156,10 @@ static void d_interrupt(void) {
 	if (int_idx == 3)
 		u_wait(50);
 
+	/* Play sound */
+	if (int_idx == 5)
+		PlaySound();
+
 	/*
 	 * This is called every 1/300 of a second, but since the screen refresh
 	 * rate is 1/50 of a second, this means that using this simple method,
@@ -164,4 +172,6 @@ static void d_interrupt(void) {
 	/* Scan Keyboard every 1/50 of a second */
 	if (int_idx == 1)
 		cpct_scanKeyboard_if();
+
+	
 }

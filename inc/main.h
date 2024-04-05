@@ -33,6 +33,7 @@
 #include "icons.h"
 #include "fonts.h"
 #include "levels.h"
+#include "sound.h"
 
 #include "video.h"
 #include "utilities.h"

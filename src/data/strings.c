@@ -21,14 +21,16 @@
 /* Game Strings */
 const char *const g_strings[] = {
 	/* Demo Screen 0-9 */
-	"A REMAKE BY", "DAVE MOORE (c) 2024", "    ORIGINAL BY    ",
+	"A REMAKE BY", "    (C) DAVE MOORE 2024    ", "    ORIGINAL BY    ",
 	"  CHRISTOPH VON RHEIN & ROMAN MAJER  ", " (C) MOSAIK SOFTWARE 1984 ",
 	"BASED ON NIBBLER BY", "JOSEPH H. ULOWETZ & JOHN M. JAUGILAS ",
-	"(C) ROCK-OLA MFG CORP 1982", "V0.8: 20/12/2023", "",
+	"(C) ROCK-OLA MFG CORP 1982", "V0.9: 05/04/2024",
+	"   MUSIC BY MR LOU   ",
 	/* Title Screen 10-29 */
 	"1.", "2.", "3.", "4.", "9.", "0.", "DIFFICULTY", "SET CONTROLS",
 	"MUSIC/SFX ON/OFF", "SHOW INSTRUCTONS", "PLAY GAME", "QUIT",
-	"TODAY'S HISCORES", "..........", "0000000000", "", "", "", "", "",
+	"TODAY'S HISCORES", "..........", "0000000000", "", "", "", "",
+	"    WITH    ",
 	/* Transition Screens 30-39 */
 	"ROUND", "LEVEL", "GET READY!", "GAME OVER!", "CONGRATULATIONS!",
 	"YOU HAVE COMPLETED THE DEMO VERSION", "OF NIBBLER DX!",
@@ -51,5 +53,5 @@ const char *const g_strings[] = {
 	/* Controls 80 - 89 */
 	"IN-GAME CONTROLS:", "CHANGE DIRECTION", "CURSOR KEYS/JOYSTICK",
 	"PAUSE/UNPAUSE", "P", "QUIT TO MAIN MENU", "Q",
-	"GITHUB.COM/DAVEMOORE22/CPCNIBDX", "DAVEMOORE22@PROTONMAIL.COM",
-	"WRITTEN WITH CPCTELERA/SDCC"};
+	"CODE BY DAVE MOORE", "MUSIC BY MR LOu",
+	"wRITTEN WITH CPCTELERA"};

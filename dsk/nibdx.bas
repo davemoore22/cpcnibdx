@@ -1,4 +1,4 @@
-10 REM Nibbler DX (V0.6) by Dave Moore (c) 2024
+10 REM Nibbler DX (V0.9) by Dave Moore (c) 2024
 20 REM https://github.com/davemoore22/cpcnibdx/
 30 MODE 0
 40 BORDER 0
@@ -23,4 +23,3 @@
 230 PRINT "LOADING PLEASE WAIT"
 240 LOAD "NIBDX.SCR", &C000
 250 RUN "NIBDX.BIN"
-260 

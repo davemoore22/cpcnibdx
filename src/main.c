@@ -25,6 +25,9 @@ void main(void) {
 	cpct_keyID key;
 	bool game_over = false;
 
+	/* initialise Sound*/
+	InitSound();
+
 	/* Initial Game Settings */
 	g_setup();
 

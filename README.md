@@ -3,15 +3,13 @@
 An Amstrad CPC Remake of the classic Arcade Game
 by Dave Moore (c) 2023-2024
 
-**Currently in development with full release in 2024!**
-Coded in C using the fantastic [CPCTelera library](https://lronaldo.github.io/cpctelera/).
+Coded in C using the fantastic [CPCTelera library](https://lronaldo.github.io/cpctelera/), and the awesome [Arkos Tracker 2](https://www.julien-nevo.com/arkostracker/). Works on all CPC models.
 
 ![](/promo/loading.png)
 
-**Demo version (v0.8) fully playable**. The full version will also have:
+**Demo version (v0.9) fully playable**.
 
-* Sound Effects and Music
-* Enhanced Graphics and Animations
+* Now with Music by Mr Lou (<http://www.dewfall.dk/>)
 
 **Tested and Working on both actual CPCs and Emulators!**
 
@@ -33,15 +31,19 @@ The basis for this remake is the original port by Mosaik Software available [her
 
 **Version History**
 
+*Version 0.9 (05/04/2024)*
+
+* Added Demo Screen Music ("Rabbit" by Mr Lou - <http://www.dewfall.dk/>)
+
 *Version 0.8 (20/12/2023)*
 
 * Fixed Responsiveness of Controls in main game
-* In easy mode, Nibbler now remembers on a level which gems are eaten
+* In Easy Mode, Nibbler now remembers on a level which gems are eaten
 * In the High Score Table, no additional keypress is needed to finish entering a score
 
 *Version 0.7 (12/12/2023)*
 
-* Added a difficulty toggle
+* Added a Difficulty toggle
 * Added the remaining levels (to make 10 in total)
 
 *Version 0.6 (10/12/2023)*

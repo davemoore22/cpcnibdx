@@ -54,7 +54,8 @@
 		"span": "c",
 		"strings.h": "c",
 		"snake.h": "c",
-		"memory": "c"
+		"memory": "c",
+		"sound.h": "c"
 	},
 	"editor.rulers": [
 		80
