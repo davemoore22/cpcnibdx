@@ -6,7 +6,7 @@ import csv
 import os
 os.system('clear')
 
-with open('level-1.csv', newline='') as csvfile:
+with open('level-10.csv', newline='') as csvfile:
 	data = list(csv.reader(csvfile))
 level = data[0]
 source = []

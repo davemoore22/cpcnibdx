@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level-10.tmx",
+    "activeFile": "level-1.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -24,8 +24,8 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 159,
-                "y": 31
+                "x": 158.5,
+                "y": 30.5
             }
         },
         "level-1.tmx": {
@@ -33,7 +33,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 159.70961887477316,
-                "y": 82.91994353700343
+                "y": 81.9520064529139
             }
         },
         "level-10.tmx": {
@@ -41,7 +41,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 151.86548602129145,
-                "y": 83.7329618943389
+                "y": 83.4145856133718
             }
         },
         "level-2.tmx": {
@@ -49,7 +49,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 160.14326932643522,
-                "y": 83.7329618943389
+                "y": 83.4145856133718
             }
         },
         "level-3.tmx": {
@@ -72,8 +72,8 @@
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 159.66666666666666,
-                "y": 83.66666666666667
+                "x": 159.33333333333331,
+                "y": 83.33333333333334
             }
         },
         "level-6.tmx": {
@@ -123,7 +123,6 @@
     "map.width": 40,
     "openFiles": [
         "sprites.tsx",
-        "level-1.tmx",
         "demo.tmx",
         "level-2.tmx",
         "level-3.tmx",
@@ -133,12 +132,12 @@
         "level-7.tmx",
         "level-8.tmx",
         "level-9.tmx",
-        "level-10.tmx"
+        "level-10.tmx",
+        "level-1.tmx"
     ],
     "project": "nibdx.tiled-project",
     "recentFiles": [
         "sprites.tsx",
-        "level-1.tmx",
         "demo.tmx",
         "level-2.tmx",
         "level-3.tmx",
@@ -148,7 +147,8 @@
         "level-7.tmx",
         "level-8.tmx",
         "level-9.tmx",
-        "level-10.tmx"
+        "level-10.tmx",
+        "level-1.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

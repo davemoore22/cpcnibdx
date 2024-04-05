@@ -255,7 +255,8 @@ static bool g_play_level(const u8 level, u8* gems_left) {
 				gems[gem_ate].loc.x = 0;
 				gems[gem_ate].loc.y = 0;
 				--*gems_left;
-				score += level * level * round * 10 * diff_mod;
+				score += level * level * round * 10 * sn.length
+					* diff_mod;
 				g_redraw_score(score);
 			}
 
@@ -445,10 +446,24 @@ static void g_interrupt(void) {
 static void g_load_level(const u8 level, u8 *gems_left, const bool reset_gems) {
 
 	pos_t* gem_source;
+	u8* level_source;
+	u8* byte_p;
+	u8 byte, lsb, msb;
 
-	/* Load the Playfield */
+	/* Decompress and load the level */
 	cpct_memset(&pf, 0x00, sizeof(pf));
-	cpct_memcpy(&pf, g_game_pf[level - 1], sizeof(pf));
+	level_source = g_game_pf[level - 1];
+	byte_p = level_source;
+	for (u16 i = 0; i < 421; i++) {
+		byte = *byte_p;
+
+		msb = (byte >> 4) + 6;
+		lsb = (byte & 0b00001111) + 6;
+		pf[i * 2] = msb;
+		pf[(i * 2)+1] = lsb;
+
+		byte_p++;
+	}
 
 	/* Reload the Gems if necessary */
 	if (reset_gems) {
