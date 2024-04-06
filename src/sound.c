@@ -102,7 +102,6 @@ void PlayMusic(u8 songNumber)
 
 void StopMusic()
 {
-
 	PLAYER_ARKOS_STOP();
 }
 

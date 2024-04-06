@@ -9,7 +9,7 @@ Coded in C using the fantastic [CPCTelera library](https://lronaldo.github.io/cp
 
 **Demo version (v0.9) fully playable**.
 
-* Now with Music by Mr Lou (<http://www.dewfall.dk/>)
+* Now with Music by Roald Strauss (<http://www.dewfall.dk/>)
 
 **Tested and Working on both actual CPCs and Emulators!**
 
@@ -33,7 +33,7 @@ The basis for this remake is the original port by Mosaik Software available [her
 
 *Version 0.9 (05/04/2024)*
 
-* Added Demo Screen Music ("Rabbit" by Mr Lou - <http://www.dewfall.dk/>)
+* Added Demo Screen Music ("Rabbit" by Roald Strauss - <http://www.dewfall.dk/>)
 
 *Version 0.8 (20/12/2023)*
 
