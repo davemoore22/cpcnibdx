@@ -26,7 +26,7 @@ void main(void) {
 	bool game_over = false;
 
 	/* initialise Sound*/
-	InitSound();
+	s_initialise_sound();
 
 	/* Initial Game Settings */
 	g_setup();

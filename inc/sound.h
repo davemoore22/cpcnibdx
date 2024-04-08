@@ -1,43 +1,42 @@
-//-----------------------------LICENSE NOTICE------------------------------------
-//  ArkosTracker 2 example
-//  Copyright (C) 2020 Arnaud Bouche (@Arnaud6128)
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Lesser General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Lesser General Public License for more details.
-//
-//  You should have received a copy of the GNU Lesser General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//-------------------------------------------------------------------------------
+/* 
+ * NibblerDX for the Amstrad CPC
+ * Copyright (C) 2024 Dave Moore
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; If not, see <http://www.gnu.org/licenses/>.
+ */
 
-#ifndef SOUND_FX_H
-#define SOUND_FX_H
+#pragma once
 
-enum
-{
-    CHANNEL_A,
-    CHANNEL_B,
-    CHANNEL_C
-};
+#include "main.h"
 
-#define NO_FX	0
-#define MAX_VOL	0
+/* Public Functions */
+void s_initialise_sound(void);
+void s_toggle_sound(void);
+void s_enable_sound(void);
+void s_disable_sound(void);
+void s_start_sound(void);
+void s_stop_sound(void);
+void s_play_sound(void);
+bool s_get_sound_status(void);
 
-void InitSound();
-void InitMusic(void* music);
-void InitSFX(void* sfx);
+void s_set_fx(u8 number, u8 channel, u8 volume);
+void s_set_music(u8 number);
 
-void PlayMusic(u8 songNumber);
-void PlaySFX(u8 fx, u8 channel, u8 volume);
+/* Private Functions */
+static void s_initialise_music(void* music);
+static void s_initialise_sfx(void* fx);
 
-void PlaySound();
-
-void StopMusic();
-
-#endif
+/* Relevant Defines */
+#define NO_SOUND_FX 0
+#define MAX_SOUND_VOLUME 0

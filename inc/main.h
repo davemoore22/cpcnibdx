@@ -26,6 +26,8 @@
 #include <assert.h>
 #include <cpctelera.h>
 
+#include "arkos2/ArkosPlayer2.h"
+
 #include "defines.h"
 #include "strings.h"
 

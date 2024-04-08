@@ -39,6 +39,8 @@ cpct_keyID t_start(bool skip) {
 	v_blk_scr();
 	v_clr_scr();
 
+	s_set_music(0);
+
 	/* Display the Title Screen */
 	if (!skip) {
 		v_draw_logo();
@@ -76,6 +78,7 @@ cpct_keyID t_start(bool skip) {
 
 					/* 1 to change Game Mode */
 					g_options[0] = !g_options[0];
+					s_set_fx(1, SOUND_CHANNEL_C, 15);
 					if (ph == DISP_MENU) {
 						cpct_waitVSYNC();
 						t_draw_menu(false);
@@ -84,16 +87,24 @@ cpct_keyID t_start(bool skip) {
 
 					/* 2 to change Controls */
 					g_options[1] = !g_options[1];
+					s_set_fx(2, SOUND_CHANNEL_C, 15);
 					if (ph == DISP_MENU) {
 						cpct_waitVSYNC();
 						t_draw_menu(false);
 					}
 				} else if (cpct_isKeyPressed(Key_3)) {
 
+					cpct_waitVSYNC();
+
 					/* 3 to toggle Sound/Music on of off */
 					if (ph == DISP_MENU) {
 						g_options[2] = !g_options[2];
-						cpct_waitVSYNC();
+						if (!g_options[2]) {
+							s_disable_sound();
+							s_stop_sound();
+						}	
+						else
+							s_enable_sound();
 						t_draw_menu(false);
 					}
 				} else if (cpct_isKeyPressed(Key_4)) {
@@ -128,6 +139,7 @@ void t_stop(void) {
 	v_blk_scr();
 	v_clr_scr();
 	cpct_removeInterruptHandler();
+	s_stop_sound();
 	int_idx = 0;
 }
 
@@ -172,6 +184,10 @@ static void t_interrupt(void) {
 		{HW_BLACK, HW_WHITE, HW_BRIGHT_WHITE, HW_BRIGHT_RED},
 		{HW_BLACK, HW_WHITE, HW_BRIGHT_WHITE, HW_BRIGHT_RED},
 		{HW_BLACK, HW_WHITE, HW_BRIGHT_WHITE, HW_ORANGE}};
+
+	/* Play sound */
+	if (int_idx == 5)
+		s_play_sound();	
 
 	/*
 	 * This is called every 1/300 of a second, but since the screen refresh

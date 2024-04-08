@@ -96,3 +96,10 @@ typedef struct {
 		u16 ms; /* Milliseconds*/
 		u16 s;	/* Seconds */
 } clock_t;
+
+/* Sound Channels */
+enum {
+	SOUND_CHANNEL_A,
+	SOUND_CHANNEL_B,
+	SOUND_CHANNEL_C
+};

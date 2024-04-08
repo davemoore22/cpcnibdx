@@ -9,10 +9,10 @@ Links of Reference:
 Note that even though I personally am using Linux, for simplicity's sake, I will keep the references in the links above to long Windows-style filenames intact. The wall of text below covers the procedure you need to follow to add Music/Sound Effects, as I have done for my game NibblerDX.
 
 You will need:
-Music Song File you wish to incorporate, in AKS format.
-Sound Effects Song File, also in AKS format.
-Access to your Arkos Tracker 2 directory.
-Access to the arkos2.zip file mentioned above.
+1. Music Song File you wish to incorporate, in AKS format.
+2. Sound Effects Song File, also in AKS format.
+3. Access to your Arkos Tracker 2 directory.
+4. Access to the arkos2.zip file mentioned above.
 
 I am using Rabbit.aks by Mr Lou from indiegamemusic.com in this example (he has very kindly given me permission to use it in NibblerDX).
 
@@ -34,6 +34,7 @@ include "soundeffects.asm"
 include "soundeffects_playerconfig.asm"  ;Optional.
 
 ;What hardware? Uncomment the right one.
+PLY_AKG_HARDWARE_CPC = 1
 ;PLY_AKG_HARDWARE_MSX = 1        
 ;PLY_AKG_HARDWARE_SPECTRUM = 1
 ;PLY_AKG_HARDWARE_PENTAGON = 1

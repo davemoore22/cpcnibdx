@@ -28,7 +28,7 @@ const char *const g_strings[] = {
 	"   MUSIC BY ROALD STRAUSS   ",
 	/* Title Screen 10-29 */
 	"1.", "2.", "3.", "4.", "9.", "0.", "DIFFICULTY", "SET CONTROLS",
-	"MUSIC/SFX ON/OFF", "SHOW INSTRUCTONS", "PLAY GAME", "QUIT",
+	"MUSIC ON/OFF", "SHOW INSTRUCTONS", "PLAY GAME", "QUIT",
 	"TODAY'S HISCORES", "..........", "0000000000", "", "", "", "",
 	"    WITH    ",
 	/* Transition Screens 30-39 */
@@ -54,4 +54,4 @@ const char *const g_strings[] = {
 	"IN-GAME CONTROLS:", "CHANGE DIRECTION", "CURSOR KEYS/JOYSTICK",
 	"PAUSE/UNPAUSE", "P", "QUIT TO MAIN MENU", "Q",
 	"CODE BY DAVE MOORE", "MUSIC BY ROALD STRAUSS",
-	"wRITTEN WITH CPCTELERA"};
+	"CODED USING CPCTELERA/SDCC"};

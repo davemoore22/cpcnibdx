@@ -53,7 +53,7 @@ void d_start(void) {
 	v_draw_pf(g_demo_pf, &pf_loc, &pf_sz);
 
 	/* Play Music*/
-	PlayMusic(0);
+	s_set_music(0);
 
 	/* Setup Screen Rasters */
 	cpct_waitVSYNC();
@@ -115,7 +115,7 @@ void d_stop(void) {
 	v_blk_scr();
 	v_clr_scr();
 	cpct_removeInterruptHandler();
-	StopMusic();
+	s_stop_sound();
 }
 
 /* Draw the text on the Demo Screen */
@@ -158,7 +158,7 @@ static void d_interrupt(void) {
 
 	/* Play sound */
 	if (int_idx == 5)
-		PlaySound();
+		s_play_sound();
 
 	/*
 	 * This is called every 1/300 of a second, but since the screen refresh
